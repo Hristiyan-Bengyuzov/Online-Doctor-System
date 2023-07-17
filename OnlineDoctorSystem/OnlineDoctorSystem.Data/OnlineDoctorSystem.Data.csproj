@@ -14,4 +14,8 @@
     <ProjectReference Include="..\OnlineDoctorSystem.Data.Models\OnlineDoctorSystem.Data.Models.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Configurations\" />
+  </ItemGroup>
+
 </Project>

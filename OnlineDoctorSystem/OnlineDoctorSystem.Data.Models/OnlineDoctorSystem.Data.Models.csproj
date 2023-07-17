@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\AspNetCoreTemplate.Data.Common\OnlineDoctorSystem.Data.Common.csproj" />
+    <ProjectReference Include="..\OnlineDoctorSystem.Data.Common\OnlineDoctorSystem.Data.Common.csproj" />
   </ItemGroup>
 
 </Project>
