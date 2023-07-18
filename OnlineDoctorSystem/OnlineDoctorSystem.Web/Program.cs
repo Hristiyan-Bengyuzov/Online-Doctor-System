@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using OnlineDoctorSystem.Data;
 using OnlineDoctorSystem.Data.Models;
@@ -10,25 +11,26 @@ builder.Services.AddDbContext<OnlineDoctorDbContext>(options => options.UseSqlSe
 
 builder.Services.AddDefaultIdentity<ApplicationUser>(options =>
 {
-	options.SignIn.RequireConfirmedAccount = false;
-	options.Password.RequireLowercase = false;
-	options.Password.RequireUppercase = false;
-	options.Password.RequireNonAlphanumeric = false;
-	options.Password.RequiredLength = 8;
-}).AddEntityFrameworkStores<OnlineDoctorDbContext>();
+    options.SignIn.RequireConfirmedAccount = false;
+    options.Password.RequireLowercase = false;
+    options.Password.RequireUppercase = false;
+    options.Password.RequireNonAlphanumeric = false;
+    options.Password.RequiredLength = 8;
+})
+.AddRoles<IdentityRole>()
+.AddEntityFrameworkStores<OnlineDoctorDbContext>();
 
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
 {
-	app.UseMigrationsEndPoint();
-	app.UseDeveloperExceptionPage();
+    app.UseMigrationsEndPoint();
+    app.UseDeveloperExceptionPage();
 }
 else
 {
-	app.UseExceptionHandler("/Home/Error");
-
-	app.UseHsts();
+    app.UseExceptionHandler("/Home/Error");
+    app.UseHsts();
 }
 
 app.UseHttpsRedirection();
