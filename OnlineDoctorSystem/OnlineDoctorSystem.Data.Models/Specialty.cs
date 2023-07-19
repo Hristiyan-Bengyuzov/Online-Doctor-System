@@ -5,5 +5,7 @@
     public class Specialty : BaseDeletableModel<int>
     {
         public string Name { get; set; }
+
+        public ICollection<Doctor> Doctors { get; set; } = new HashSet<Doctor>();
     }
 }

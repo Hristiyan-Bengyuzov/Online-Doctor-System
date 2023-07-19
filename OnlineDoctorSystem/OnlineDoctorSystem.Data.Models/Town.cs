@@ -9,5 +9,7 @@
         public string Name { get; set; } = null!;
 
         public virtual ICollection<Doctor> Doctors { get; set; } = new HashSet<Doctor>();
+
+        public virtual ICollection<Patient> Patients { get; set; } = new HashSet<Patient>();
     }
 }

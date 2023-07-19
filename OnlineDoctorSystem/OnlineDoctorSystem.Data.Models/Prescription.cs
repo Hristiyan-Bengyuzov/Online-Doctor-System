@@ -19,10 +19,6 @@
 
         public virtual Patient Patient { get; set; }
 
-        public int Quantity { get; set; }
-
-        public string MedicamentName { get; set; }
-
-        public string Instructions { get; set; }
+        public virtual ICollection<Medicament> Medicaments { get; set; }
     }
 }

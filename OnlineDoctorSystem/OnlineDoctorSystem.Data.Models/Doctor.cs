@@ -12,9 +12,13 @@ namespace OnlineDoctorSystem.Data.Models
             this.Reviews = new HashSet<Review>();
         }
 
-        public string Name { get; set; } 
+        public string Name { get; set; }
+
+        public int SpecialtyId { get; set; }
 
         public Specialty Specialty { get; set; }
+
+        public int TownId { get; set; }
 
         public Town Town { get; set; }
 
@@ -27,6 +31,8 @@ namespace OnlineDoctorSystem.Data.Models
         public Guid UserId { get; set; }
 
         public virtual ApplicationUser User { get; set; }
+
+        public virtual ICollection<Prescription> Prescriptions { get; set; }
 
         public Gender Gender { get; set; }
 

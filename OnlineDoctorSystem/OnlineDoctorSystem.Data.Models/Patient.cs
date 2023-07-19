@@ -23,6 +23,8 @@
 
         public string ImageUrl { get; set; }
 
+        public int TownId { get; set; }
+
         public Town Town { get; set; }
 
         public DateTime BirthDate { get; set; }
