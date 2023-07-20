@@ -18,6 +18,10 @@
             {
                 new TownsSeeder(),
                 new SpecialtiesSeeder(),
+                new RolesSeeder(),
+                new AdminSeeder(),
+                new DoctorSeeder(),
+                new PatientSeeder(),
             };
 
             foreach (var seeder in seeders)
