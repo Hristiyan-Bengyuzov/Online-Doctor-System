@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using OnlineDoctorSystem.Data;
 using OnlineDoctorSystem.Data.Models;
+using OnlineDoctorSystem.Data.Seeders;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,6 +22,12 @@ builder.Services.AddDefaultIdentity<ApplicationUser>(options =>
 .AddEntityFrameworkStores<OnlineDoctorDbContext>();
 
 var app = builder.Build();
+
+using (var serviceScope = app.Services.CreateScope())
+{
+    var dbContext = serviceScope.ServiceProvider.GetRequiredService<OnlineDoctorDbContext>();
+    new OnlineDoctorDbContextSeeder().SeedAsync(dbContext, serviceScope.ServiceProvider).GetAwaiter().GetResult();
+}
 
 if (app.Environment.IsDevelopment())
 {

@@ -1,5 +1,6 @@
 ﻿using OnlineDoctorSystem.Data.Common.Models;
 using OnlineDoctorSystem.Data.Models.Enums;
+using System.Reflection.Metadata.Ecma335;
 
 namespace OnlineDoctorSystem.Data.Models
 {
@@ -24,11 +25,11 @@ namespace OnlineDoctorSystem.Data.Models
 
         public string Phone { get; set; }
 
-        public string ImageUrl { get; set; }
+        public string? ImageUrl { get; set; }
 
         public DateTime BirthDate { get; set; }
 
-        public Guid UserId { get; set; }
+        public string DoctorUserId { get; set; }
 
         public virtual ApplicationUser User { get; set; }
 

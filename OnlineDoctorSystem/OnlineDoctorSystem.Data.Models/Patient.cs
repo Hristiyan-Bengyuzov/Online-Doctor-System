@@ -6,22 +6,20 @@
     using OnlineDoctorSystem.Data.Common.Models;
     using OnlineDoctorSystem.Data.Models.Enums;
 
-    public class Patient : BaseDeletableModel<string>
+    public class Patient : BaseDeletableModel<Guid>
     {
         public Patient()
         {
-            this.Id = Guid.NewGuid().ToString();
+            this.Id = Guid.NewGuid();
             this.Consultations = new HashSet<Consultation>();
             this.Prescriptions = new HashSet<Prescription>();
         }
 
-        public string FirstName { get; set; }
-
-        public string LastName { get; set; }
+        public string Name { get; set; }
 
         public string Phone { get; set; }
 
-        public string ImageUrl { get; set; }
+        public string? ImageUrl { get; set; }
 
         public int TownId { get; set; }
 
@@ -31,7 +29,7 @@
 
         public Gender Gender { get; set; }
 
-        public Guid UserId { get; set; }
+        public string PatientUserId { get; set; }
 
         public virtual ApplicationUser User { get; set; }
 

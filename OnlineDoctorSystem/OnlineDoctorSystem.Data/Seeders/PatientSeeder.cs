@@ -11,7 +11,7 @@ namespace OnlineDoctorSystem.Data.Seeders
         public async Task SeedAsync(OnlineDoctorDbContext context, IServiceProvider serviceProvider)
         {
             var userManager = serviceProvider.GetRequiredService<UserManager<ApplicationUser>>();
-            await SeedPatientAsync(userManager, "Emil Sandev", "patient@patient.com", context);
+            await SeedPatientAsync(userManager, "EmilSandev", "patient@patient.com", context);
         }
 
         private async Task SeedPatientAsync(UserManager<ApplicationUser> userManager, string username, string email, OnlineDoctorDbContext context)
@@ -35,8 +35,8 @@ namespace OnlineDoctorSystem.Data.Seeders
                     Phone = "+359 89 152 82 95",
                     BirthDate = new DateTime(2005, 7, 12),
                     TownId = 1,
-                    UserId = Guid.Parse(user.Id),
-                    Gender = Gender.Female,
+                    PatientUserId = user.Id,
+                    Gender = Gender.Male,
                 };
 
                 await context.Patients.AddAsync(patient);

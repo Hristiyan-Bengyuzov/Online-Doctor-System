@@ -17,6 +17,11 @@ namespace OnlineDoctorSystem.Data.Configurations
                    .WithMany(t => t.Doctors)
                    .HasForeignKey(d => d.TownId)
                    .OnDelete(DeleteBehavior.Restrict);
+
+            builder.HasOne(d => d.User)
+                   .WithOne(u => u.Doctor)
+                   .HasForeignKey<Doctor>(d => d.DoctorUserId)
+                   .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }

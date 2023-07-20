@@ -1,29 +1,40 @@
-﻿using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using OnlineDoctorSystem.Data.Models;
+using System.Reflection;
 
 namespace OnlineDoctorSystem.Data
 {
     public class OnlineDoctorDbContext : IdentityDbContext<ApplicationUser>
-	{
-		public OnlineDoctorDbContext(DbContextOptions<OnlineDoctorDbContext> options)
-			: base(options)
-		{
-		}
+    {
+        public OnlineDoctorDbContext(DbContextOptions<OnlineDoctorDbContext> options)
+            : base(options)
+        {
+        }
 
-        public DbSet<Prescription> Prescriptions { get; set; }
+        public DbSet<Prescription> Prescriptions { get; set; } = null!;
 
-        public DbSet<Town> Towns { get; set; }
+        public DbSet<Town> Towns { get; set; } = null!;
 
-        public DbSet<Doctor> Doctors { get; set; }
+        public DbSet<Doctor> Doctors { get; set; } = null!;
 
-        public DbSet<Patient> Patients { get; set; }
+        public DbSet<Patient> Patients { get; set; } = null!;
 
-        public DbSet<Consultation> Consultations { get; set; }
+        public DbSet<Medicament> Medicaments { get; set; } = null!;
 
-        public DbSet<Review> Reviews { get; set; }
+        public DbSet<Consultation> Consultations { get; set; } = null!;
 
-        public DbSet<Specialty> Specialties { get; set; }
+        public DbSet<Review> Reviews { get; set; } = null!;
+
+        public DbSet<Specialty> Specialties { get; set; } = null!;
+
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            Assembly configAssembly = Assembly.GetAssembly(typeof(OnlineDoctorDbContext)) ??
+                                      Assembly.GetExecutingAssembly();
+            builder.ApplyConfigurationsFromAssembly(configAssembly);
+
+            base.OnModelCreating(builder);
+        }
     }
 }

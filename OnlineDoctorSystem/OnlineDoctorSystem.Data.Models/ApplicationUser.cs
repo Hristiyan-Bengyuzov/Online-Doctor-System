@@ -8,5 +8,9 @@
         {
             this.Id = Guid.NewGuid().ToString();
         }
+
+        public virtual Doctor Doctor { get; set; }
+
+        public virtual Patient Patient { get; set; }
     }
 }
