@@ -10,6 +10,8 @@
     <ProjectReference Include="..\OnlineDoctorSystem.Data.Common\OnlineDoctorSystem.Data.Common.csproj" />
     <ProjectReference Include="..\OnlineDoctorSystem.Data.Models\OnlineDoctorSystem.Data.Models.csproj" />
     <ProjectReference Include="..\OnlineDoctorSystem.Data\OnlineDoctorSystem.Data.csproj" />
+    <ProjectReference Include="..\OnlineDoctorSystem.Services.Data.Models\OnlineDoctorSystem.Services.Data.Models.csproj" />
+    <ProjectReference Include="..\OnlineDoctorSystem.Web.ViewModels\OnlineDoctorSystem.Web.ViewModels.csproj" />
   </ItemGroup>
 
 </Project>

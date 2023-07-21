@@ -14,6 +14,8 @@ namespace OnlineDoctorSystem.Services.Data
             this.context = context;
         }
 
+        public async Task<IEnumerable<string>> AllTownNamesAsync() => await this.context.Towns.Select(t => t.Name).ToListAsync();
+
         public async Task<IEnumerable<Town>> GetAllTowns() => await this.context.Towns.ToListAsync();
     }
 }

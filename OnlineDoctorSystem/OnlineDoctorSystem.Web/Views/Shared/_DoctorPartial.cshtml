@@ -1,0 +1,51 @@
+﻿﻿@{
+    this.ViewData["Title"] = $"Всички доктори";
+}
+
+@model OnlineDoctorSystem.Web.ViewModels.Doctors.AllDoctorsViewModel
+
+<div class="col-md-4">
+    <div class="card mb-3">
+        <img class="card-img-top" src="@Model.ImageUrl" alt="Doctor Image">
+        <div class="card-body text-center">
+            <h4>@Model.Name</h4>
+            <h6>Town: <b>@Model.Town</b></h6>
+            <h6>Specialty: <b>@Model.Specialty</b></h6>
+            <br />
+            <a asp-controller="Doctor" asp-action="Details" asp-route-id="@Model.Id"
+               class="btn btn-success">Details</a>
+          @*  @if (User.Identity?.IsAuthenticated ?? false)
+            {
+                @if ((isUserAgent && isAgentOwnerOfTheHouse) || User.IsAdmin())
+                {
+                    <a asp-controller="House" asp-action="Edit" asp-route-id="@Model.Id"
+                       class="btn btn-warning">Edit</a>
+                    <a asp-controller="House" asp-action="Delete" asp-route-id="@Model.Id"
+                       class="btn btn-danger">Delete</a>
+                }
+                <p></p>
+
+                @if (!Model.IsRented)
+                {
+                    @if (!isUserAgent || User.IsAdmin())
+                    {
+                        <form class="input-group-sm" asp-controller="House"
+                              asp-action="Rent" asp-route-id="@Model.Id" method="post">
+                            <input class="btn btn-primary" type="submit" value="Rent" />
+                        </form>
+                    }
+                }
+                else
+                {
+                    @if (!isUserAgent && isHouseRentedByUser)
+                    {
+                        <form asp-controller="House" asp-action="Leave"
+                              asp-route-id="@Model.Id" method="post">
+                            <input class="btn btn-primary" type="submit" value="Leave" />
+                        </form>
+                    }
+                }
+            }*@
+        </div>
+    </div>
+</div>

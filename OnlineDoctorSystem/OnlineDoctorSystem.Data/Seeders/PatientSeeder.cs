@@ -11,15 +11,15 @@ namespace OnlineDoctorSystem.Data.Seeders
         public async Task SeedAsync(OnlineDoctorDbContext context, IServiceProvider serviceProvider)
         {
             var userManager = serviceProvider.GetRequiredService<UserManager<ApplicationUser>>();
-            await SeedPatientAsync(userManager, "EmilSandev", "patient@patient.com", context);
+            await SeedPatientAsync(userManager, "patient@patient.com", context);
         }
 
-        private async Task SeedPatientAsync(UserManager<ApplicationUser> userManager, string username, string email, OnlineDoctorDbContext context)
+        private async Task SeedPatientAsync(UserManager<ApplicationUser> userManager, string username, OnlineDoctorDbContext context)
         {
             var user = new ApplicationUser()
             {
                 UserName = username,
-                Email = email,
+                Email = username,
                 EmailConfirmed = true
             };
 

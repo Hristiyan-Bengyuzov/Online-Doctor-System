@@ -13,6 +13,8 @@ namespace OnlineDoctorSystem.Services.Data.Interfaces
             this.context = context;
         }
 
+        public async Task<IEnumerable<string>> AllSpecialtyNamesAsync() => await this.context.Specialties.Select(s => s.Name).ToListAsync();
+
         public async Task<IEnumerable<Specialty>> GetAllSpecialties() => await this.context.Specialties.ToListAsync();
     }
 }

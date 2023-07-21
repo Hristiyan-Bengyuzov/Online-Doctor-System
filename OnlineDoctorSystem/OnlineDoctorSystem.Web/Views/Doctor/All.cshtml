@@ -1,0 +1,96 @@
+﻿@using OnlineDoctorSystem.Web.ViewModels.Doctors;
+@model AllDoctorsQueryModel
+
+@{
+	ViewBag.Title = "All Doctors";
+}
+
+<h2 class="text-center">@ViewBag.Title</h2>
+<hr />
+
+<form method="get">
+	<div class="row">
+		<div class="form-group col-md-3 d-flex justify-content-between">
+			<div class="form-group">
+				<label asp-for="Specialty"></label>
+				<select asp-for="Specialty" class="form-control">
+					<option value="">All</option>
+					@foreach (var specialty in Model.Specialties)
+					{
+						<option value="@specialty">@specialty</option>
+					}
+				</select>
+			</div>
+			<div class="form-group">
+				<label asp-for="Town"></label>
+				<select asp-for="Town" class="form-control">
+					<option value="">All</option>
+					@foreach (var town in Model.Towns)
+					{
+						<option value="@town">@town</option>
+					}
+				</select>
+			</div>
+		</div>
+		<div class="form-group col-md-3">
+			<label asp-for="Name"></label>
+			<input asp-for="Name" class="form-control" placeholder="...">
+		</div>
+		<div class="col-md-3">
+			<div class="form-group mt-4 p-2">
+				<input type="submit" value="Search" class="btn btn-primary" />
+			</div>
+		</div>
+	</div>
+</form>
+
+@{
+	int previousPage = Model.CurrentPage - 1;
+
+	if (previousPage < 1)
+	{
+		previousPage = 1;
+	}
+
+	int maxPage = (int)Math.Ceiling((double)Model.TotalDoctors / Model.DoctorsPerPage);
+}
+
+<div class="row mb-5">
+	<div class="col-md-6 d-grid gap-2 d-md-flex justify-content-md-start">
+		<a class="btn btn-primary @(Model.CurrentPage == 1 ? "disabled" : string.Empty)"
+		   asp-controller="House"
+		   asp-action="All"
+		   asp-route-currentPage="@previousPage"
+		   asp-route-specialty="@Model.Specialty"
+		   asp-route-town="@Model.Town"
+		   asp-route-name="@Model.Name"><<</a>
+	</div>
+
+	@{
+		bool shouldNextPageBeDisabled = Model.CurrentPage == maxPage || !Model.Doctors.Any();
+	}
+
+	<div class="col-md-6 d-grid gap-2 d-md-flex justify-content-md-end">
+		<a class="btn btn-primary
+           @(shouldNextPageBeDisabled ? "disabled" : string.Empty)"
+		   asp-controller="House"
+		   asp-action="All"
+		   asp-route-currentPage="@(Model.CurrentPage + 1)"
+		   asp-route-specialty="@Model.Specialty"
+		   asp-route-town="@Model.Town"
+		   asp-route-name="@Model.Name"
+		   >>></a>
+	</div>
+</div>
+
+@if (!Model.Doctors.Any())
+{
+	<h2 class="text-center">Няма доктор по подадените параметри.</h2>
+}
+
+<div class="row">
+	@foreach (var doctor in Model.Doctors)
+	{
+		<partial name="_DoctorPartial" model="@doctor" />
+	}
+</div>

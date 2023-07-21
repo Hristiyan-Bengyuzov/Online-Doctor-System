@@ -5,5 +5,7 @@ namespace OnlineDoctorSystem.Services.Data.Interfaces
     public interface ITownsService
     {
         Task<IEnumerable<Town>> GetAllTowns();
+
+        Task<IEnumerable<string>> AllTownNamesAsync();
     }
 }

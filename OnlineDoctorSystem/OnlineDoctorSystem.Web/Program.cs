@@ -3,6 +3,8 @@ using Microsoft.EntityFrameworkCore;
 using OnlineDoctorSystem.Data;
 using OnlineDoctorSystem.Data.Models;
 using OnlineDoctorSystem.Data.Seeders;
+using OnlineDoctorSystem.Web.Infrastructure.Extensions;
+using OnlineDoctorSystem.Services.Data.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,6 +22,10 @@ builder.Services.AddDefaultIdentity<ApplicationUser>(options =>
 })
 .AddRoles<IdentityRole>()
 .AddEntityFrameworkStores<OnlineDoctorDbContext>();
+
+builder.Services.AddApplicationServices(typeof(ITownsService));
+builder.Services.AddApplicationServices(typeof(ISpecialtiesService));
+builder.Services.AddApplicationServices(typeof(IDoctorsService));
 
 var app = builder.Build();
 

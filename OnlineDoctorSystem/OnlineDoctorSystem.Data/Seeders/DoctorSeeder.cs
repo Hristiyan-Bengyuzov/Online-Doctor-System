@@ -11,15 +11,15 @@ namespace OnlineDoctorSystem.Data.Seeders
         public async Task SeedAsync(OnlineDoctorDbContext context, IServiceProvider serviceProvider)
         {
             var userManager = serviceProvider.GetRequiredService<UserManager<ApplicationUser>>();
-            await SeedDoctorAsync(userManager, "HaralampySlavkov", "doctor@doctor.com", context);
+            await SeedDoctorAsync(userManager, "doctor@doctor.com", context);
         }
 
-        private static async Task SeedDoctorAsync(UserManager<ApplicationUser> userManager, string username, string email, OnlineDoctorDbContext context)
+        private static async Task SeedDoctorAsync(UserManager<ApplicationUser> userManager, string username, OnlineDoctorDbContext context)
         {
             var user = new ApplicationUser()
             {
                 UserName = username,
-                Email = email,
+                Email = username,
                 EmailConfirmed = true
             };
 
@@ -39,6 +39,7 @@ namespace OnlineDoctorSystem.Data.Seeders
                     DoctorUserId = user.Id,
                     Gender = Gender.Male,
                     YearsOfPractice = 12,
+                    ImageUrl = "https://t4.ftcdn.net/jpg/02/60/04/09/360_F_260040900_oO6YW1sHTnKxby4GcjCvtypUCWjnQRg5.jpg",
                     SmallInfo = "Опитен кардиолог",
                     Education = "Софийски университет",
                     Qualifications = "Доста квалифициран",

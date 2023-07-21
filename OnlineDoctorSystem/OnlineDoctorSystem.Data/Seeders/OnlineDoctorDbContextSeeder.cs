@@ -19,8 +19,8 @@
                 new TownsSeeder(),
                 new SpecialtiesSeeder(),
                 new RolesSeeder(),
-                new DoctorSeeder(),
                 new AdminSeeder(),
+                new DoctorSeeder(),
                 new PatientSeeder(),
             };
 
