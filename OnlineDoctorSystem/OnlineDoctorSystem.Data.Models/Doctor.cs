@@ -1,10 +1,9 @@
 ﻿using OnlineDoctorSystem.Data.Common.Models;
 using OnlineDoctorSystem.Data.Models.Enums;
-using System.Reflection.Metadata.Ecma335;
 
 namespace OnlineDoctorSystem.Data.Models
 {
-    public class Doctor : BaseDeletableModel<Guid>
+	public class Doctor : BaseDeletableModel<Guid>
     {
         public Doctor()
         {

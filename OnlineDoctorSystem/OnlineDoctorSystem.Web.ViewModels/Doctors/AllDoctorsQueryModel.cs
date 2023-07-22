@@ -1,13 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace OnlineDoctorSystem.Web.ViewModels.Doctors
+﻿namespace OnlineDoctorSystem.Web.ViewModels.Doctors
 {
-    public class AllDoctorsQueryModel
+	public class AllDoctorsQueryModel
     {
         public string? Specialty { get; set; }
         public string? Name { get; set; }

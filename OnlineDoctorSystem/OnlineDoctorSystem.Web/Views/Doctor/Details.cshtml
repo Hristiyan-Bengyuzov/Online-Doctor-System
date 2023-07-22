@@ -1,0 +1,57 @@
+﻿@model OnlineDoctorSystem.Web.ViewModels.Doctors.DoctorDetailsViewModel
+
+@{
+    ViewData["Title"] = "Doctor Details";
+}
+
+<div class="container">
+    <div class="row mt-5">
+        <div class="col-md-12">
+            <div class="card">
+                <img src="@Model.ImageUrl" class="card-img-top doctor-image" alt="@Model.Name">
+                <div class="card-body">
+                    <h5 class="card-title">@Model.Name</h5>
+                    <p class="card-text">@Model.SmallInfo</p>
+                    <hr>
+                    <p><strong>Specialty:</strong> @Model.Specialty</p>
+                    <p><strong>Town:</strong> @Model.Town</p>
+                    <hr>
+                    <p><strong>Education:</strong></p>
+                    <p>@Model.Education</p>
+                    <hr>
+                    <p><strong>Qualifications:</strong></p>
+                    <p>@Model.Qualifications</p>
+                    <hr>
+                    <p><strong>Biography:</strong></p>
+                    <p>@Model.Biography</p>
+                    <a href="#" class="btn btn-primary btn-lg">Запази час</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .plane-image {
+        max-width: 300px;
+        margin: auto;
+        display: block;
+    }
+    .card {
+        max-width: 500px;
+        margin: 20px auto;
+    }
+
+    .card-body {
+        padding: 20px;
+    }
+
+    .card-title {
+        font-size: 24px;
+        font-weight: bold;
+    }
+
+    .card-text {
+        font-size: 16px;
+    }
+</style>

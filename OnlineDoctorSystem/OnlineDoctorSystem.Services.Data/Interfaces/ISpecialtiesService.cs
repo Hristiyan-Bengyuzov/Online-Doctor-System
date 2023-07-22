@@ -7,5 +7,7 @@ namespace OnlineDoctorSystem.Services.Data.Interfaces
         Task<IEnumerable<Specialty>> GetAllSpecialties();
 
         Task<IEnumerable<string>> AllSpecialtyNamesAsync();
+
+        Task<string> GetSpecialtyNameByIdAsync(int id);
     }
 }

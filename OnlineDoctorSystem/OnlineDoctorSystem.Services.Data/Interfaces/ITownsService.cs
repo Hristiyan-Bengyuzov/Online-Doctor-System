@@ -7,5 +7,7 @@ namespace OnlineDoctorSystem.Services.Data.Interfaces
         Task<IEnumerable<Town>> GetAllTowns();
 
         Task<IEnumerable<string>> AllTownNamesAsync();
+
+        Task<string> GetTownNameByIdAsync(int id);
     }
 }

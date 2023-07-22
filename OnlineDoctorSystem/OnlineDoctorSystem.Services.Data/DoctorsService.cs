@@ -10,10 +10,14 @@ namespace OnlineDoctorSystem.Services.Data
     public class DoctorsService : IDoctorsService
     {
         private readonly OnlineDoctorDbContext context;
+        private readonly ITownsService townsService;
+        private readonly ISpecialtiesService specialtiesService;
 
-        public DoctorsService(OnlineDoctorDbContext context)
+        public DoctorsService(OnlineDoctorDbContext context, ITownsService townsService, ISpecialtiesService specialtiesService)
         {
             this.context = context;
+            this.townsService = townsService;
+            this.specialtiesService = specialtiesService;
         }
 
         public async Task<AllDoctorsFilteredAndPagedServiceModel> AllAsync(AllDoctorsQueryModel queryModel)
@@ -54,6 +58,24 @@ namespace OnlineDoctorSystem.Services.Data
             {
                 TotalDoctorsCount = totalDoctors,
                 Doctors = allDoctors,
+            };
+        }
+
+        public async Task<DoctorDetailsViewModel> GetDoctorDetailsAsync(string id)
+        {
+            var doctor = await this.context.Doctors.FirstAsync(d => d.Id == Guid.Parse(id));
+
+            return new DoctorDetailsViewModel()
+            {
+                Id = id,
+                Name = doctor.Name,
+                Specialty = await this.specialtiesService.GetSpecialtyNameByIdAsync(doctor.SpecialtyId),
+                Town = await this.townsService.GetTownNameByIdAsync(doctor.TownId),
+                ImageUrl = doctor.ImageUrl!,
+                SmallInfo = doctor.SmallInfo,
+                Education = doctor.Education,
+                Qualifications = doctor.Qualifications,
+                Biography = doctor.Biography,
             };
         }
     }

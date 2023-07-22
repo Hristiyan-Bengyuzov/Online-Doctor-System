@@ -33,9 +33,17 @@ namespace OnlineDoctorSystem.Web.Controllers
             return this.View(queryModel);
         }
 
+        public async Task<IActionResult> Details(string id)
+        {
+            var model = await this.doctorsService.GetDoctorDetailsAsync(id);
+
+            return this.View(model);
+        }
+
         public IActionResult Index()
         {
             return View();
         }
+
     }
 }
