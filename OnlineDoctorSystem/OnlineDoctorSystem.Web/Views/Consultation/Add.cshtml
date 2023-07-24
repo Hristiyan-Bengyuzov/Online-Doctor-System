@@ -1,0 +1,44 @@
+﻿@{
+    this.ViewData["Title"] = "Добавяне на консултация";
+    Model.Date = DateTime.Now;
+}
+@model OnlineDoctorSystem.Web.ViewModels.Consultations.AddConsultationFormModel
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h1 class="text-center mb-4">Запазване на час при д-р @Model.DoctorName</h1>
+                    <form method="post" asp-controller="Consultation" asp-action="Add">
+                        <div class="form-group">
+                            <label asp-for="Date">Въведете дата</label>
+                            <input asp-for="Date" class="form-control" />
+                            <span asp-validation-for="Date" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="StartTime">Въведете начално време</label>
+                            <input asp-for="StartTime" type="time" class="form-control" />
+                            <span asp-validation-for="StartTime" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="EndTime">Въведете крайно време</label>
+                            <input asp-for="EndTime" type="time" class="form-control">
+                            <span asp-validation-for="EndTime" class="text-danger"></span>
+                            <input type="hidden" asp-for="DoctorId" />
+                            <input type="hidden" asp-for="PatientId" />
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Description">Въведете заявка за посещението</label>
+                            <textarea asp-for="Description" class="form-control" placeholder="Често имам главоболие."></textarea>
+                            <span asp-validation-for="Description" class="text-danger"></span>
+                        </div>
+                        <div class="form-group text-center mt-4">
+                            <button class="btn btn-success" type="submit">Уговаряне на дата и час</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
