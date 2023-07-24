@@ -1,4 +1,5 @@
-﻿using OnlineDoctorSystem.Services.Data.Models.Doctors;
+﻿using OnlineDoctorSystem.Data.Models;
+using OnlineDoctorSystem.Services.Data.Models.Doctors;
 using OnlineDoctorSystem.Web.ViewModels.Doctors;
 
 namespace OnlineDoctorSystem.Services.Data.Interfaces
@@ -7,5 +8,7 @@ namespace OnlineDoctorSystem.Services.Data.Interfaces
     {
         Task<AllDoctorsFilteredAndPagedServiceModel> AllAsync(AllDoctorsQueryModel queryModel);
         Task<DoctorDetailsViewModel> GetDoctorDetailsAsync(string id);
+        Task<string> GetDoctorNameByIdAsync(string id);
+        Task<Doctor> GetDoctorByIdAsync(string id);
     }
 }

@@ -24,7 +24,7 @@
                     <hr>
                     <p><strong>Biography:</strong></p>
                     <p>@Model.Biography</p>
-                    <a href="#" class="btn btn-primary btn-lg">Запази час</a>
+                    <a asp-controller="Consultation" asp-action="Add" asp-route-id="@Model.Id" class="btn btn-primary btn-lg">Запази час</a>
                 </div>
             </div>
         </div>
@@ -32,7 +32,7 @@
 </div>
 
 <style>
-    .plane-image {
+    .doctor-image {
         max-width: 300px;
         margin: auto;
         display: block;

@@ -11,9 +11,11 @@
             this.Id = Guid.NewGuid();
         }
 
-        public DateTime StartTime { get; set; }
+        public DateTime Date { get; set; }
 
-        public DateTime EndTime { get; set; }
+        public TimeSpan StartTime { get; set; }
+
+        public TimeSpan EndTime { get; set; }
 
         public Guid PatientId { get; set; }
 
@@ -22,6 +24,10 @@
         public Guid DoctorId { get; set; }
 
         public Doctor Doctor { get; set; }
+
+        public bool IsConfirmed { get; set; }
+
+        public bool IsActive { get; set; }
 
         public string Description { get; set; }
     }

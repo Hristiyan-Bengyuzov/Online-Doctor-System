@@ -61,6 +61,8 @@ namespace OnlineDoctorSystem.Services.Data
             };
         }
 
+        public async Task<Doctor> GetDoctorByIdAsync(string id) => await this.context.Doctors.FirstAsync(d => d.Id == Guid.Parse(id));
+
         public async Task<DoctorDetailsViewModel> GetDoctorDetailsAsync(string id)
         {
             var doctor = await this.context.Doctors.FirstAsync(d => d.Id == Guid.Parse(id));
@@ -77,6 +79,12 @@ namespace OnlineDoctorSystem.Services.Data
                 Qualifications = doctor.Qualifications,
                 Biography = doctor.Biography,
             };
+        }
+
+        public async Task<string> GetDoctorNameByIdAsync(string id)
+        {
+            var doctor = await this.context.Doctors.FirstAsync(d => d.Id == Guid.Parse(id));
+            return doctor.Name;
         }
     }
 }
