@@ -1,0 +1,11 @@
+﻿@model OnlineDoctorSystem.Web.ViewModels.Consultations.SuccessfullyBookedViewModel
+@{
+    this.ViewData["Title"] = "Успешно подадена заявка!";
+}
+
+<div class="text-center">
+    <h1>Вашата заявка за консултация с д-р @Model.DoctorName на @Model.Date.ToShortDateString() беше приета!</h1>
+    <div class="alert alert-success">
+        Очаквайте потвърждение от практикуващия лекар!
+    </div>
+</div>

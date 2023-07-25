@@ -26,6 +26,8 @@ builder.Services.AddDefaultIdentity<ApplicationUser>(options =>
 builder.Services.AddApplicationServices(typeof(ITownsService));
 builder.Services.AddApplicationServices(typeof(ISpecialtiesService));
 builder.Services.AddApplicationServices(typeof(IDoctorsService));
+builder.Services.AddApplicationServices(typeof(IPatientsService));
+builder.Services.AddApplicationServices(typeof(IConsultationsService));
 
 var app = builder.Build();
 

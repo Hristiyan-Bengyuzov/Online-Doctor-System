@@ -25,7 +25,7 @@
 
         public Doctor Doctor { get; set; }
 
-        public bool IsConfirmed { get; set; }
+        public bool? IsConfirmed { get; set; }
 
         public bool IsActive { get; set; }
 
