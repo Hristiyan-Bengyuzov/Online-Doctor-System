@@ -1,0 +1,35 @@
+﻿@model IEnumerable<OnlineDoctorSystem.Data.Models.Consultation>
+
+@{
+    this.ViewBag.Title = "Непотвърдени консулатции";
+}
+
+<div class="text-center">
+    <h1>@this.ViewData["Title"]</h1>
+</div>
+<br />
+<div class="text-center">
+    <table class="table table-striped table-hover table-sm">
+        <tr>
+            <th>Ден</th>
+            <th>Начало</th>
+            <th>Край</th>
+            <th>Пациент</th>
+            <th>Описание</th>
+            <th>Приемане</th>
+            <th>Отказване</th>
+        </tr>
+        @foreach (var consultation in Model)
+        {
+            <tr>
+                <th>@consultation.Date.ToShortDateString()</th>
+                <th>@consultation.StartTime</th>
+                <th>@consultation.EndTime</th>
+                <th>@($"{consultation.Patient.Name}")</th>
+                <th>@consultation.Description</th>
+                <th><a asp-controller="Consultation" asp-action="Approve" asp-route-consultationId="@consultation.Id" class="btn btn-success">Приемане</a></th>
+                <th><a asp-controller="Consultation" asp-action="Decline" asp-route-consultationId="@consultation.Id" class="btn btn-danger">Отказване</a></th>
+            </tr>
+        }
+    </table>
+</div>

@@ -1,9 +1,18 @@
-﻿using OnlineDoctorSystem.Web.ViewModels.Consultations;
+﻿using OnlineDoctorSystem.Data.Models;
+using OnlineDoctorSystem.Web.ViewModels.Consultations;
 
 namespace OnlineDoctorSystem.Services.Data.Interfaces
 {
     public interface IConsultationsService
     {
         Task<bool> AddAsync(AddConsultationFormModel model);
+
+        Task<Consultation> GetConsultationByIdAsync(string id);
+
+        Task Decline(string id);
+
+        Task Approve(string id);
+
+        Task<IEnumerable<Consultation>> GetUnconfirmedConsultations(string doctorId);
     }
 }

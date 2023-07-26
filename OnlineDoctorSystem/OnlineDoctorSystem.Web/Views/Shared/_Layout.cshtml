@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using OnlineDoctorSystem.Web.Infrastructure.Extensions;
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -25,6 +26,12 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Doctor" asp-action="All">All Doctors</a>
                         </li>
+                        @if (User.IsDoctor())
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Doctor" asp-action="GetUnconfirmedConsultations">Unconfirmed Consultations</a>
+                            </li>
+                        }  
                     </ul>
                     <partial name="_LoginPartial" />
                 </div>

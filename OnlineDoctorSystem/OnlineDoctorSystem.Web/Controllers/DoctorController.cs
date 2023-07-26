@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using OnlineDoctorSystem.Services.Data.Interfaces;
 using OnlineDoctorSystem.Services.Data.Models.Doctors;
+using OnlineDoctorSystem.Web.Infrastructure.Extensions;
 using OnlineDoctorSystem.Web.ViewModels.Doctors;
 
 namespace OnlineDoctorSystem.Web.Controllers
@@ -11,12 +12,14 @@ namespace OnlineDoctorSystem.Web.Controllers
         private readonly ISpecialtiesService specialtiesService;
         private readonly ITownsService townsService;
         private readonly IDoctorsService doctorsService;
+        private readonly IConsultationsService consultationsService;
 
-        public DoctorController(ISpecialtiesService specialtiesService, ITownsService townsService, IDoctorsService doctorsService)
+        public DoctorController(ISpecialtiesService specialtiesService, ITownsService townsService, IDoctorsService doctorsService, IConsultationsService consultationsService)
         {
             this.specialtiesService = specialtiesService;
             this.townsService = townsService;
             this.doctorsService = doctorsService;
+            this.consultationsService = consultationsService;
         }
 
         [HttpGet]
@@ -40,10 +43,16 @@ namespace OnlineDoctorSystem.Web.Controllers
             return this.View(model);
         }
 
+        public async Task<IActionResult> GetUnconfirmedConsultations()
+        {
+            var consultations = await this.consultationsService.GetUnconfirmedConsultations(User.GetId()!);
+            return this.View(consultations);
+        }
+
+
         public IActionResult Index()
         {
             return View();
         }
-
     }
 }

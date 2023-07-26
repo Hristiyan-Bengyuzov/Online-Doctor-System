@@ -60,6 +60,20 @@ namespace OnlineDoctorSystem.Web.Controllers
             return this.View(viewModel);
         }
 
+        public async Task<IActionResult> Approve(string consultationId)
+        {
+            await this.consultationsService.Approve(consultationId);
+
+            return this.RedirectToAction("GetUnconfirmedConsultations", "Doctor");
+        }
+
+        public async Task<IActionResult> Decline(string consultationId)
+        {
+            await this.consultationsService.Decline(consultationId);
+
+            return this.RedirectToAction("GetUnconfirmedConsultations", "Doctor");
+        }
+
         public IActionResult Index()
         {
             return View();

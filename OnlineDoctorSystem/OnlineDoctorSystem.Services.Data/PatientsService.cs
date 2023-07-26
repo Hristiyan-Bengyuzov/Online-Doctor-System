@@ -14,6 +14,8 @@ namespace OnlineDoctorSystem.Services.Data
             this.context = context;
         }
 
-        public async Task<Patient> GetPatientByIdAsync(string id) => await this.context.Patients.FirstAsync(d => d.PatientUserId == id);
+        public async Task<Patient> GetPatientByIdAsync(string id) => await this.context.Patients.FirstAsync(d => d.Id == Guid.Parse(id));
+
+        public async Task<Patient> GetPatientByUserIdAsync(string id) => await this.context.Patients.FirstAsync(d => d.PatientUserId == id);
     }
 }
