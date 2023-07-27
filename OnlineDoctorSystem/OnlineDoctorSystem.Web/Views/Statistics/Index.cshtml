@@ -1,0 +1,100 @@
+﻿@model OnlineDoctorSystem.Web.ViewModels.Statistics.StatisticsViewModel
+@{
+    this.ViewData["Title"] = "Статистика";
+}
+<h1 class="text-center">@this.ViewData["Title"]</h1>
+
+<div class="card rounded-0 border">
+    <h3 class="card-header h4 rounded-0">
+        Лекари
+    </h3>
+    <div class="card-block">
+        <ul class="list-group">
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                <span>Общо регистрирани практикуващи лекари</span>
+                <span class="badge badge-secondary badge-pill bg-primary text-white" style="font-size: 18px; font-weight: bold;">@this.Model.DoctorsCount</span>
+            </li>
+        </ul>
+    </div>
+</div>
+<br />
+<div class="row no-gutters">
+    <div class="col-md-6">
+        <div class="card rounded-0 border">
+            <h3 class="card-header h4 rounded-0">
+                Брой лекари по градове
+            </h3>
+            <div class="card-block">
+                <ul class="list-group">
+                    @foreach (var town in this.Model.Towns)
+                    {
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            @town.TownName
+                            <span class="badge badge-secondary badge-pill bg-info text-white" style="font-size: 18px; font-weight: bold;">@town.DoctorsCount</span>
+                        </li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card rounded-0 border">
+            <h3 class="card-header h4 rounded-0">
+                Брой пациенти
+            </h3>
+            <div class="card-block">
+                <ul class="list-group">
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        Брой пациенти
+                        <span class="badge badge-secondary badge-pill bg-success text-white" style="font-size: 18px; font-weight: bold;">@Model.PatientsCount</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <br />
+        <br />
+        <div class="card rounded-0 border">
+            <h3 class="card-header h4 rounded-0">
+                Брой консултации
+            </h3>
+            <div class="card-block">
+                <ul class="list-group">
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        Брой консултации
+                        <span class="badge badge-secondary badge-pill bg-warning text-white" style="font-size: 18px; font-weight: bold;">@Model.ConsultationsCount</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <br />
+        <br />
+        <div class="card rounded-0 border">
+            <h3 class="card-header h4 rounded-0">
+                Брой отзива
+            </h3>
+            <div class="card-block">
+                <ul class="list-group">
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        Брой отзива
+                        <span class="badge badge-secondary badge-pill bg-danger text-white" style="font-size: 18px; font-weight: bold;">@Model.ReviewsCount</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <br />
+        <br />
+        <div class="card rounded-0 border">
+            <h3 class="card-header h4 rounded-0">
+                Брой специалности
+            </h3>
+            <div class="card-block">
+                <ul class="list-group">
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        Брой специалности
+                        <span class="badge badge-secondary badge-pill bg-primary text-white" style="font-size: 18px; font-weight: bold;">@Model.SpecialtiesCount</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
