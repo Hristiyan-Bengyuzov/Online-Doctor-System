@@ -5,6 +5,7 @@ using OnlineDoctorSystem.Data.Models;
 using OnlineDoctorSystem.Data.Seeders;
 using OnlineDoctorSystem.Web.Infrastructure.Extensions;
 using OnlineDoctorSystem.Services.Data.Interfaces;
+using OnlineDoctorSystem.Services.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -28,6 +29,7 @@ builder.Services.AddApplicationServices(typeof(ISpecialtiesService));
 builder.Services.AddApplicationServices(typeof(IDoctorsService));
 builder.Services.AddApplicationServices(typeof(IPatientsService));
 builder.Services.AddApplicationServices(typeof(IConsultationsService));
+builder.Services.AddHostedService<ConsultationsBackgroundService>();
 
 var app = builder.Build();
 

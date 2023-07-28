@@ -90,5 +90,19 @@ namespace OnlineDoctorSystem.Services.Data
 
             return consultations;
         }
+
+        public async Task UpdateConsultationsWhenCompleted()
+        {
+            var pastConsultations = await this.context.Consultations
+                .Where(x => x.Date < DateTime.Today || (x.Date == DateTime.Today && x.EndTime <= DateTime.Now.TimeOfDay))
+                .ToListAsync();
+
+            foreach (var consultation in pastConsultations)
+            {
+                consultation.IsActive = false;
+            }
+
+            await this.context.SaveChangesAsync();
+        }
     }
 }
