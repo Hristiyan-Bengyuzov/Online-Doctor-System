@@ -1,11 +1,7 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-using OnlineDoctorSystem.Common;
+﻿using Microsoft.AspNetCore.Mvc;
 using OnlineDoctorSystem.Services.Data.Interfaces;
 using OnlineDoctorSystem.Web.Infrastructure.Extensions;
 using OnlineDoctorSystem.Web.ViewModels.Consultations;
-using System.Data;
-using System.Security.Claims;
 
 namespace OnlineDoctorSystem.Web.Controllers
 {
@@ -72,6 +68,25 @@ namespace OnlineDoctorSystem.Web.Controllers
             await this.consultationsService.Decline(consultationId);
 
             return this.RedirectToAction("GetUnconfirmedConsultations", "Doctor");
+        }
+
+        public async Task<IActionResult> GetUsersConsultations()
+        {
+            string userId = User.GetId()!;
+            IEnumerable<ConsultationViewModel> model;
+
+            if (User.IsDoctor())
+            {
+                var doctor = await this.doctorsService.GetDoctorByIdAsync(userId);
+                model = await this.consultationsService.GetDoctorsConsultationsAsync(doctor.Id.ToString());
+            }
+            else
+            {
+                var patient = await this.patientsService.GetPatientByUserIdAsync(userId);
+                model = await this.consultationsService.GetPatientsConsultationsAsync(patient.Id.ToString());
+            }
+
+            return this.View(model);
         }
 
         public IActionResult Index()

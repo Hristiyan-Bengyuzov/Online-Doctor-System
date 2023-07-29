@@ -104,5 +104,53 @@ namespace OnlineDoctorSystem.Services.Data
 
             await this.context.SaveChangesAsync();
         }
+
+        public async Task<IEnumerable<ConsultationViewModel>> GetDoctorsConsultationsAsync(string doctorId)
+        {
+            var consultations = await this.context.Consultations
+                .Where(c => c.DoctorId == Guid.Parse(doctorId))
+                .Select(c => new ConsultationViewModel
+                {
+                    Id = c.Id,
+                    DoctorName = c.Doctor.Name,
+                    PatientName = c.Patient.Name,
+                    PatientId = c.PatientId.ToString(),
+                    DoctorId = doctorId,
+                    IsActive = c.IsActive,
+                    IsDeleted = c.IsDeleted,
+                    IsConfirmed = c.IsConfirmed,
+                    StartTime = c.StartTime,
+                    EndTime = c.EndTime,
+                    Date = c.Date,
+                    Description = c.Description,
+                })
+                .ToListAsync();
+
+            return consultations;
+        }
+
+        public async Task<IEnumerable<ConsultationViewModel>> GetPatientsConsultationsAsync(string patientId)
+        {
+            var consultations = await this.context.Consultations
+               .Where(c => c.PatientId == Guid.Parse(patientId))
+               .Select(c => new ConsultationViewModel
+               {
+                   Id = c.Id,
+                   DoctorName = c.Doctor.Name,
+                   PatientName = c.Patient.Name,
+                   PatientId = patientId,
+                   DoctorId = c.DoctorId.ToString(),
+                   IsActive = c.IsActive,
+                   IsDeleted = c.IsDeleted,
+                   IsConfirmed = c.IsConfirmed,
+                   StartTime = c.StartTime,
+                   EndTime = c.EndTime,
+                   Date = c.Date,
+                   Description = c.Description,
+               })
+               .ToListAsync();
+
+            return consultations;
+        }
     }
 }

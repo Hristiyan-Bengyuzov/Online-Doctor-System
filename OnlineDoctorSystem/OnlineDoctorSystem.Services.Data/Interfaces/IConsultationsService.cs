@@ -16,5 +16,9 @@ namespace OnlineDoctorSystem.Services.Data.Interfaces
         Task<IEnumerable<Consultation>> GetUnconfirmedConsultations(string doctorId);
 
         Task UpdateConsultationsWhenCompleted();
+
+        Task<IEnumerable<ConsultationViewModel>> GetDoctorsConsultationsAsync(string doctorId);
+
+        Task<IEnumerable<ConsultationViewModel>> GetPatientsConsultationsAsync(string doctorId);
     }
 }
