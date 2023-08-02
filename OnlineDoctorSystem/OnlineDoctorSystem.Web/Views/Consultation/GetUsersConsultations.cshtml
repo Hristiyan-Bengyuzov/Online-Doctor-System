@@ -19,8 +19,6 @@
 				<th>Доктор</th>
 				<th>Описание</th>
 				<th>Анулиране</th>
-
-
 			</tr>
 			@foreach (var consultation in Model.Where(x => x.IsActive && (bool)x.IsConfirmed!))
 			{

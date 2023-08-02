@@ -1,0 +1,22 @@
+﻿@model OnlineDoctorSystem.Web.ViewModels.Prescriptions.AddPrescriptionFormModel
+@{
+	this.ViewData["Title"] = "Предписване на медикамент на пациент";
+}
+<h1 class="text-center">@this.ViewData["Title"]</h1>
+<form method="post" asp-controller="Prescription" asp-action="Add">
+	<div class="form-group">
+		<label asp-for="MedicamentName" style="margin-bottom: 8px;">Име на лекарство:</label>
+		<input asp-for="MedicamentName" class="form-control" placeholder="Въведете име на лекарство" style="margin-bottom: 8px;" />
+		<span asp-validation-for="MedicamentName" class="text-danger"></span>
+	</div>
+	<div class="form-group" style="margin-top: 8px;">
+		<label asp-for="Instructions" style="margin-bottom: 8px;">Допълнителни инструкции:</label>
+		<textarea asp-for="Instructions" class="form-control" placeholder="Въведете допълнителни инструкции" style="margin-top: 8px;"></textarea>
+		<span asp-validation-for="Instructions" class="text-danger"></span>
+	</div>
+	<input type="hidden" asp-for="PatientId" value="@Model.PatientId" />
+
+	<div class="text-center mt-3">
+		<button type="submit" class="btn btn-success btn-lg">Добавяне на предписание</button>
+	</div>
+</form>

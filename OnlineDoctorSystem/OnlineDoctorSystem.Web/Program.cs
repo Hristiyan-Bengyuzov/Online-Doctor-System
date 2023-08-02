@@ -29,6 +29,7 @@ builder.Services.AddApplicationServices(typeof(ISpecialtiesService));
 builder.Services.AddApplicationServices(typeof(IDoctorsService));
 builder.Services.AddApplicationServices(typeof(IPatientsService));
 builder.Services.AddApplicationServices(typeof(IConsultationsService));
+builder.Services.AddApplicationServices(typeof(IPrescriptionsService));
 builder.Services.AddHostedService<ConsultationsBackgroundService>();
 
 var app = builder.Build();

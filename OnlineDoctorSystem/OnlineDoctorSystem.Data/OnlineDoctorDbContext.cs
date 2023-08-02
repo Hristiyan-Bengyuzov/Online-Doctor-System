@@ -20,8 +20,6 @@ namespace OnlineDoctorSystem.Data
 
         public DbSet<Patient> Patients { get; set; } = null!;
 
-        public DbSet<Medicament> Medicaments { get; set; } = null!;
-
         public DbSet<Consultation> Consultations { get; set; } = null!;
 
         public DbSet<Review> Reviews { get; set; } = null!;
