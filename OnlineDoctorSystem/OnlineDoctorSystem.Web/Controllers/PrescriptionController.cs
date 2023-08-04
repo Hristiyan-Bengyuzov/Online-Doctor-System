@@ -21,7 +21,7 @@ namespace OnlineDoctorSystem.Web.Controllers
 			var model = new AddPrescriptionFormModel()
 			{
 				PatientId = patientId,
-				Doctor = await this.doctorsService.GetDoctorByIdAsync(User.GetId()!)
+				Doctor = await this.doctorsService.GetDoctorByUserIdAsync(User.GetId()!)
 			};
 			return this.View(model);
 		}

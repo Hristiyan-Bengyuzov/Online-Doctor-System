@@ -9,6 +9,7 @@ namespace OnlineDoctorSystem.Services.Data.Interfaces
         Task<AllDoctorsFilteredAndPagedServiceModel> AllAsync(AllDoctorsQueryModel queryModel);
         Task<DoctorDetailsViewModel> GetDoctorDetailsAsync(string id);
         Task<string> GetDoctorNameByIdAsync(string id);
+        Task<Doctor> GetDoctorByUserIdAsync(string id);
         Task<Doctor> GetDoctorByIdAsync(string id);
     }
 }

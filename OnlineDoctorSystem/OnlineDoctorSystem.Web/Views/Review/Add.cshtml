@@ -1,0 +1,74 @@
+﻿@model OnlineDoctorSystem.Web.ViewModels.Reviews.AddReviewFormModel
+
+@{
+	ViewData["Title"] = "Add Review";
+}
+
+<h1>Add Review for @Model.DoctorName</h1>
+
+<form asp-controller="Review" asp-action="Add" method="post">
+	<div class="form-group">
+		<label for="rating">Rating:</label>
+
+		<div>
+			<span class="fa fa-star fa-2x" onclick="updateRating(1)"></span>
+			<span class="fa fa-star fa-2x" onclick="updateRating(2)"></span>
+			<span class="fa fa-star fa-2x" onclick="updateRating(3)"></span>
+			<span class="fa fa-star fa-2x" onclick="updateRating(4)"></span>
+			<span class="fa fa-star fa-2x" onclick="updateRating(5)"></span>
+			<input type="hidden" asp-for="Rating" />
+		</div>
+		<span asp-validation-for="Rating" class="text-danger"></span>
+	</div>
+
+	<div class="form-group">
+		<label for="reviewText">Review Text:</label>
+		<textarea id="reviewText" name="ReviewText" class="form-control" asp-for="ReviewText"></textarea>
+		<span asp-validation-for="ReviewText" class="text-danger"></span>
+	</div>
+
+	<input type="hidden" asp-for="DoctorId" />
+
+	<button type="submit" class="btn btn-primary">Submit Review</button>
+</form>
+
+@section Scripts {
+	<script>
+		function updateRating(rating) {
+			document.querySelector('input[name="Rating"]').value = rating;
+			updateStarRatingUI(rating);
+		}
+
+		function updateStarRatingUI(rating) {
+			const stars = document.querySelectorAll('.fa-star');
+			stars.forEach((star, index) => {
+				if (index < rating) {
+					star.classList.add('selected');
+				} else {
+					star.classList.remove('selected');
+				}
+			});
+		}
+	</script>
+}
+
+<style>
+	.fa-star {
+		cursor: pointer;
+		color: gray;
+	}
+
+	.fa-star.selected {
+		color: gold;
+	}
+
+	.fa-2x {
+		font-size: 2em;
+	}
+</style>
+
+
+
+
+
+

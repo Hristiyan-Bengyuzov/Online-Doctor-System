@@ -24,10 +24,10 @@ namespace OnlineDoctorSystem.Services.Data
             {
                 return false;
             }
-            else if (model.Date <= DateTime.Now)
-            {
-                return false;
-            }
+            //else if (model.Date < DateTime.Now)
+            //{
+            //    return false;
+            //}
 
             return true;
         }
@@ -81,7 +81,7 @@ namespace OnlineDoctorSystem.Services.Data
 
         public async Task<IEnumerable<Consultation>> GetUnconfirmedConsultations(string doctorId)
         {
-            var doctor = await this.doctorsService.GetDoctorByIdAsync(doctorId);
+            var doctor = await this.doctorsService.GetDoctorByUserIdAsync(doctorId);
             var consultations = await this.context.Consultations.Where(x => x.IsConfirmed == null && x.DoctorId == doctor.Id).ToListAsync();
             foreach (var consultation in consultations)
             {
