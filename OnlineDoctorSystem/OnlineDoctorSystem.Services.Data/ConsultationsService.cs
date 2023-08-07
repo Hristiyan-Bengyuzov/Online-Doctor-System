@@ -24,10 +24,10 @@ namespace OnlineDoctorSystem.Services.Data
             {
                 return false;
             }
-            //else if (model.Date < DateTime.Now)
-            //{
-            //    return false;
-            //}
+            else if (model.Date < DateTime.Now)
+            {
+                return false;
+            }
 
             return true;
         }
@@ -53,7 +53,16 @@ namespace OnlineDoctorSystem.Services.Data
                 IsConfirmed = null
             };
 
-            doctor.Consultations.Add(consultation);
+			var calendarEvent = new CalendarEvent()
+			{
+				Color = "yellow",
+				Start = consultation.Date + consultation.StartTime,
+				End = consultation.Date + consultation.EndTime,
+				Text = $"{consultation.StartTime}",
+			};
+			consultation.CalendarEvent = calendarEvent;
+
+			doctor.Consultations.Add(consultation);
 
             await this.context.Consultations.AddAsync(consultation);
             await this.context.SaveChangesAsync();

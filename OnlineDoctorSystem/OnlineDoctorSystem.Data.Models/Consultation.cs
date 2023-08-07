@@ -30,5 +30,7 @@
         public bool IsActive { get; set; }
 
         public string Description { get; set; }
+
+        public virtual CalendarEvent CalendarEvent { get; set; }
     }
 }

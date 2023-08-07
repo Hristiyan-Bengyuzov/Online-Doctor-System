@@ -1,0 +1,28 @@
+﻿@{ ViewData["Title"] = "Home Page"; }
+
+<script src="~/js/daypilot/daypilot-all.min.js" asp-append-version="true"></script>
+
+<div class="main" style="display: flex;">
+    <div style="">
+        <div id="nav"></div>
+    </div>
+    <div style="flex-grow: 1; margin-left: 10px;">
+        <div class="navi">
+            <button id="previous">&#9668;</button>
+            <button id="today" class="highlighted">Today</button>
+            <button id="next">&#9658;</button>
+        </div>
+        <div id="dp"></div>
+    </div>
+    <form method="post" id="antiForgeryForm"></form>
+</div>
+
+@section Scripts {
+    <style>
+        .navigator_default_main {
+            display: none;
+        }
+    </style>
+
+    <script src="~/js/calendar.js"></script>
+}

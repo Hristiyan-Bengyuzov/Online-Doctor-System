@@ -89,6 +89,11 @@ namespace OnlineDoctorSystem.Web.Controllers
 			return this.View(model);
 		}
 
+		public IActionResult UserCalendar()
+		{
+			return this.View();
+		}
+
 		public IActionResult Index()
 		{
 			return View();
