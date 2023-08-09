@@ -52,7 +52,7 @@ namespace OnlineDoctorSystem.Web.Areas.Identity.Pages.Account
 
 		public async Task<IActionResult> OnPostAsync(string? returnUrl = null)
 		{
-			returnUrl ??= this.Url.Content("~/Patient/ThankYou");
+			returnUrl ??= this.Url.Action("ThankYou", "Patient");
 			ReturnUrl = returnUrl;
 			this.ExternalLogins = (await this.signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
 

@@ -49,6 +49,10 @@ namespace OnlineDoctorSystem.Web.Controllers
             return this.View(consultations);
         }
 
+        public IActionResult ThankYou()
+        {
+            return this.View();
+        }
 
         public IActionResult Index()
         {

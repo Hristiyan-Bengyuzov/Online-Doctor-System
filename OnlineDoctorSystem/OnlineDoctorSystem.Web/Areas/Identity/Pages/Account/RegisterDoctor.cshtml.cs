@@ -63,7 +63,7 @@ namespace OnlineDoctorSystem.Web.Areas.Identity.Pages.Account
 
         public async Task<IActionResult> OnPostAsync(string? returnUrl = null)
         {
-            returnUrl ??= this.Url.Content("~/Doctors/ThankYou");
+            returnUrl ??= this.Url.Action("ThankYou", "Patient");
             ReturnUrl = returnUrl;
             this.ExternalLogins = (await this.signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
 
@@ -71,11 +71,6 @@ namespace OnlineDoctorSystem.Web.Areas.Identity.Pages.Account
             if (!allowedExtensions.Any(x => this.Input.Image.FileName.EndsWith(x)))
             {
                 this.ModelState.AddModelError("Image", "Invalid file type.");
-            }
-
-            if (this.Input.Password != this.Input.ConfirmPassword)
-            {
-                this.ModelState.AddModelError("Password", "Passwords do not match.");
             }
 
             if (this.ModelState.IsValid)
