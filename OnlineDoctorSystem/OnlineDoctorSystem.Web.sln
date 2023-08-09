@@ -25,9 +25,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnlineDoctorSystem.Common",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnlineDoctorSystem.Web.Infrastructure", "OnlineDoctorSystem.Web.Infrastructure\OnlineDoctorSystem.Web.Infrastructure.csproj", "{AC54C8C7-503A-4E1C-A8FA-9FD7E5DABA32}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineDoctorSystem.Web.ViewModels", "OnlineDoctorSystem.Web.ViewModels\OnlineDoctorSystem.Web.ViewModels.csproj", "{43C3D81A-8D0F-456C-BC08-E70BAC5D4041}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnlineDoctorSystem.Web.ViewModels", "OnlineDoctorSystem.Web.ViewModels\OnlineDoctorSystem.Web.ViewModels.csproj", "{43C3D81A-8D0F-456C-BC08-E70BAC5D4041}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineDoctorSystem.Services.Data.Models", "OnlineDoctorSystem.Services.Data.Models\OnlineDoctorSystem.Services.Data.Models.csproj", "{3BB2A97E-EDEE-4E08-B64B-78D364BA6843}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnlineDoctorSystem.Services.Data.Models", "OnlineDoctorSystem.Services.Data.Models\OnlineDoctorSystem.Services.Data.Models.csproj", "{3BB2A97E-EDEE-4E08-B64B-78D364BA6843}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -1,21 +1,16 @@
-﻿{
-  "iisSettings": {
-    "windowsAuthentication": false,
-    "anonymousAuthentication": true,
-    "iisExpress": {
-      "applicationUrl": "http://localhost:4346",
-      "sslPort": 44322
-    }
-  },
+{
   "profiles": {
     "OnlineDoctorSystem.Web": {
       "commandName": "Project",
-      "dotnetRunMessages": true,
       "launchBrowser": true,
-      "applicationUrl": "https://localhost:7091;http://localhost:5156",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
-      }
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "CLOUDINARY_CLOUD_NAME": "dvtgivokf",
+        "CLOUDINARY_API_KEY": "558877637914448",
+        "CLOUDINARY_API_SECRET": "bg25trNXoeOkjolcRATmqDUiwSE"
+      },
+      "dotnetRunMessages": true,
+      "applicationUrl": "https://localhost:7091;http://localhost:5156"
     },
     "IIS Express": {
       "commandName": "IISExpress",
@@ -23,6 +18,14 @@
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
+    }
+  },
+  "iisSettings": {
+    "windowsAuthentication": false,
+    "anonymousAuthentication": true,
+    "iisExpress": {
+      "applicationUrl": "http://localhost:4346",
+      "sslPort": 44322
     }
   }
 }
