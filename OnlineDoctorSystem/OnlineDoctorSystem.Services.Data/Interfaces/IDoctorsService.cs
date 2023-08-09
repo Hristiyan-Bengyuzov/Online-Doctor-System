@@ -6,6 +6,7 @@ namespace OnlineDoctorSystem.Services.Data.Interfaces
 {
     public interface IDoctorsService
     {
+        Task AddDoctorToDbAsync(string userId, Doctor doctor);
         Task<AllDoctorsFilteredAndPagedServiceModel> AllAsync(AllDoctorsQueryModel queryModel);
         Task<DoctorDetailsViewModel> GetDoctorDetailsAsync(string id);
         Task<string> GetDoctorNameByIdAsync(string id);

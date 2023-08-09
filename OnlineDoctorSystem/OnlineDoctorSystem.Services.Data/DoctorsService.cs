@@ -7,7 +7,7 @@ using OnlineDoctorSystem.Web.ViewModels.Doctors;
 
 namespace OnlineDoctorSystem.Services.Data
 {
-	public class DoctorsService : IDoctorsService
+    public class DoctorsService : IDoctorsService
 	{
 		private readonly OnlineDoctorDbContext context;
 		private readonly ITownsService townsService;
@@ -20,7 +20,14 @@ namespace OnlineDoctorSystem.Services.Data
 			this.specialtiesService = specialtiesService;
 		}
 
-		public async Task<AllDoctorsFilteredAndPagedServiceModel> AllAsync(AllDoctorsQueryModel queryModel)
+        public async Task AddDoctorToDbAsync(string userId, Doctor doctor)
+        {
+            doctor.DoctorUserId = userId;
+			await this.context.Doctors.AddAsync(doctor);
+			await this.context.SaveChangesAsync();
+        }
+
+        public async Task<AllDoctorsFilteredAndPagedServiceModel> AllAsync(AllDoctorsQueryModel queryModel)
 		{
 			IQueryable<Doctor> doctorsQuery = this.context.Doctors.AsQueryable();
 

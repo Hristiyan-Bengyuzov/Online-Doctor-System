@@ -27,13 +27,25 @@
 						<li class="nav-item">
 							<a class="nav-link text-dark" asp-area="" asp-controller="Doctor" asp-action="All">All Doctors</a>
 						</li>
-						<li class="nav-item">
-							<a class="nav-link text-dark" asp-area="" asp-controller="Consultation" asp-action="GetUsersConsultations">Моите консултации</a>
-						</li>
-						@if (User.IsDoctor())
+
+
+						
+
+						@if (User.IsPatient())
 						{
 							<li class="nav-item">
-								<a class="nav-link text-dark" asp-area="" asp-controller="Doctor" asp-action="GetUnconfirmedConsultations">Непотвърдени консултации</a>
+								<a class="nav-link text-dark" asp-area="" asp-controller="Consultation" asp-action="GetUsersConsultations">Моите консултации</a>
+							</li>
+						}
+						
+						@if (User.IsDoctor())
+						{
+							<li class="nav-item dropdown">
+								<a class="nav-link dropdown-toggle text-dark" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Консултации</a>
+								<div class="dropdown-menu">
+									<a class="dropdown-item text-dark" asp-controller="Doctor" asp-action="GetUnconfirmedConsultations">Непотвърдени консултации</a>
+									<a class="dropdown-item text-dark" asp-controller="Consultation" asp-action="GetUsersConsultations">Моите консултации</a>
+								</div>
 							</li>
 						}
 						<li class="nav-item">
@@ -51,7 +63,7 @@
 		</main>
 	</div>
 	<script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+	<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 	<script src="~/js/site.js" asp-append-version="true"></script>
 	@await RenderSectionAsync("Scripts", required: false)
 </body>
