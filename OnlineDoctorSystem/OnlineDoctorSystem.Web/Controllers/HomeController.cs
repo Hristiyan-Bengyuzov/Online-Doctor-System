@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using OnlineDoctorSystem.Web.Models;
 using System.Diagnostics;
 
@@ -11,6 +12,12 @@ namespace OnlineDoctorSystem.Web.Controllers
 		public HomeController(ILogger<HomeController> logger)
 		{
 			_logger = logger;
+		}
+
+		[Authorize]
+		public IActionResult Chat()
+		{
+			return View();
 		}
 
 		public IActionResult Index()

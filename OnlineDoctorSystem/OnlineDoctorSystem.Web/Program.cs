@@ -6,6 +6,7 @@ using OnlineDoctorSystem.Data.Seeders;
 using OnlineDoctorSystem.Web.Infrastructure.Extensions;
 using OnlineDoctorSystem.Services.Data.Interfaces;
 using OnlineDoctorSystem.Services.Data;
+using OnlineDoctorSystem.Web.Hubs;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -23,6 +24,8 @@ builder.Services.AddDefaultIdentity<ApplicationUser>(options =>
 })
 .AddRoles<IdentityRole>()
 .AddEntityFrameworkStores<OnlineDoctorDbContext>();
+
+builder.Services.AddSignalR();
 
 builder.Services.AddApplicationServices(typeof(ITownsService));
 builder.Services.AddApplicationServices(typeof(ISpecialtiesService));
@@ -61,6 +64,7 @@ app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
 
+app.MapHub<ChatHub>("/chat");
 app.MapDefaultControllerRoute();
 app.MapRazorPages();
 
