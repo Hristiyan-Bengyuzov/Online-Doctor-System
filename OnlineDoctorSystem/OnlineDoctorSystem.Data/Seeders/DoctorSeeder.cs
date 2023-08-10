@@ -31,7 +31,7 @@ namespace OnlineDoctorSystem.Data.Seeders
 
                 var doctor = new Doctor
                 {
-                    Name = user.UserName,
+                    Name = "Харалампи Славков",
                     SpecialtyId = 15,
                     TownId = 1,
                     Phone = "+359 89 554 32 51",
@@ -44,6 +44,8 @@ namespace OnlineDoctorSystem.Data.Seeders
                     Education = "Софийски университет",
                     Qualifications = "Доста квалифициран",
                     Biography = "Аз съм Харалампи Славков и съм висококвалифициран кардиолог с над десетилетие опит в диагностицирането и лечението на различни сърдечни заболявания.",
+                    Latitude = 42,
+                    Longitude = 23
                 };
 
                 await context.Doctors.AddAsync(doctor);

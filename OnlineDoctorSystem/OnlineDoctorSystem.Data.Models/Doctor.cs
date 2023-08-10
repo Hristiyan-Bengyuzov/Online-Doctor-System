@@ -51,5 +51,9 @@ namespace OnlineDoctorSystem.Data.Models
         public virtual ICollection<Consultation> Consultations { get; set; }
 
         public bool? IsConfirmed { get; set; }
+
+        public double Latitude { get; set; }
+
+        public double Longitude { get; set; }
     }
 }

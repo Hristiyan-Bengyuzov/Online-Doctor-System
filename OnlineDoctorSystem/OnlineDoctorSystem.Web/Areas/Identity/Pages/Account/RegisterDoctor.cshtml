@@ -1,7 +1,7 @@
 ﻿@page
 @model RegisterDoctor
 @{
-    ViewData["Title"] = "Създаване на акаунт";
+	ViewData["Title"] = "Създаване на акаунт";
 }
 @using OnlineDoctorSystem.Data.Models.Enums
 @using OnlineDoctorSystem.Services.Data.Interfaces
@@ -11,116 +11,134 @@
 @inject ISpecialtiesService SpecialtiesService
 
 <body class="bg-gradient-success">
-    <div class="container">
-        <div class="card o-hidden border-0 shadow-lg my-5">
-            <div class="card-body p-0">
-                <div class="row">
-                    <div class="col-lg-12 bg-gradient-light">
-                        <div class="p-5">
-                            <div class="text-center">
-                                <h1 class="h4 text-gray-900 mb-4">Създаване на акаунт</h1>
-                            </div>
-                            <form method="post" enctype="multipart/form-data">
-                                <div class="form-group">
-                                    <input asp-for="Input.Name" class="form-control" placeholder="Име">
-                                    <span asp-validation-for="Input.Name" class="text-danger"></span>
-                                </div>
-                                <div class="form-group">
-                                    <input asp-for="Input.Phone" class="form-control" placeholder="Мобилен телефон">
-                                    <span asp-validation-for="Input.Phone" class="text-danger"></span>
-                                </div>
-                                <div class="form-group">
-                                    <div class="row">
-                                        <div class="col-md-6 mb-3">
-                                            <select asp-for="Input.Gender" asp-items="@Html.GetEnumSelectList<Gender>()" class="form-control">
-                                                <option value="" selected="">Избери пол...</option>
-                                            </select>
-                                            <span asp-validation-for="Input.Gender" class="text-danger"></span>
-                                        </div>
-                                        <div class="col-md-6 mb-3">
-                                            <input asp-for="Input.BirthDate" class="form-control" type="text" placeholder="Дата на раждане" onfocus="(this.type = 'date')">
-                                            <span asp-validation-for="Input.BirthDate" class="text-danger"></span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="row">
-                                        <div class="col-md-6 mb-3">
-                                            <select asp-for="Input.TownId" class="form-control">
-                                                <option value="" selected="">Избери населено място...</option>
-                                                @foreach (var town in await TownsService.GetAllTowns())
-                                                {
-                                                    <option value="@town.Id">@town.Name</option>
-                                                }
-                                            </select>
-                                            <span asp-validation-for="Input.TownId" class="text-danger"></span>
-                                        </div>
-                                        <div class="col-md-6 mb-3">
-                                            <select asp-for="Input.SpecialtyId" class="form-control">
-                                                <option value="" selected="">Избери своята специалност...</option>
-                                                @foreach (var specialty in await SpecialtiesService.GetAllSpecialties())
-                                                {
-                                                    <option value="@specialty.Id">@specialty.Name</option>
-                                                }
-                                            </select>
-                                            <span asp-validation-for="Input.SpecialtyId" class="text-danger"></span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <input asp-for="Input.Email" class="form-control" placeholder="Имейл">
-                                    <span asp-validation-for="Input.Email" class="text-danger"></span>
-                                </div>
-                                <div class="form-group">
-                                    <div class="row">
-                                        <div class="col-md-6 mb-3">
-                                            <input asp-for="Input.Password" type="password" class="form-control" placeholder="Парола">
-                                            <span asp-validation-for="Input.Password" class="text-danger"></span>
-                                        </div>
-                                        <div class="col-md-6 mb-3">
-                                            <input asp-for="Input.ConfirmPassword" type="password" class="form-control" placeholder="Повтори паролата">
-                                            <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <textarea asp-for="Input.SmallInfo" class="form-control" placeholder="Разкажете ни накратко за себе се"></textarea>
-                                    <span asp-validation-for="Input.SmallInfo" class="text-danger"></span>
-                                </div>
-                                <div class="form-group">
-                                    <textarea asp-for="Input.Education" class="form-control" placeholder="Какво образование имате?"></textarea>
-                                    <span asp-validation-for="Input.Education" class="text-danger"></span>
-                                </div>
-                                <div class="form-group">
-                                    <textarea asp-for="Input.Qualifications" class="form-control" placeholder="Имате ли някакви придобити квалификации?"></textarea>
-                                    <span asp-validation-for="Input.Qualifications" class="text-danger"></span>
-                                </div>
-                                <div class="form-group">
-                                    <textarea asp-for="Input.Biography" class="form-control" placeholder="Разкажете за предишни работни позиции"></textarea>
-                                    <span asp-validation-for="Input.Biography" class="text-danger"></span>
-                                </div>
-                                <div class="form-group">
-                                    <div class="btn btn-light">
-                                        <span>Профилна снимка</span>
-                                        <input asp-for="Input.Image">
-                                        <span asp-validation-for="Input.Image" class="text-danger"></span>
-                                    </div>
-                                </div>
-                                <div class="mb-5"></div>
-                                <button type="submit" class="btn btn-primary btn-user btn-block">Регистрация</button>
-                            </form>
-                            <hr>
-                            <div class="text-center">
-                                <a class="small" href="/Identity/Account/Login">Вече имате акаунт? Влизане!</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+	<div class="container">
+		<div class="card o-hidden border-0 shadow-lg my-5">
+			<div class="card-body p-0">
+				<div class="row">
+					<div class="col-lg-12 bg-gradient-light">
+						<div class="p-5">
+							<div class="text-center">
+								<h1 class="h4 text-gray-900 mb-4">Създаване на акаунт</h1>
+							</div>
+							<form method="post" enctype="multipart/form-data">
+								<div class="form-group">
+									<input asp-for="Input.Name" class="form-control" placeholder="Име">
+									<span asp-validation-for="Input.Name" class="text-danger"></span>
+								</div>
+								<div class="form-group">
+									<input asp-for="Input.Phone" class="form-control" placeholder="Мобилен телефон">
+									<span asp-validation-for="Input.Phone" class="text-danger"></span>
+								</div>
+								<div class="form-group">
+									<div class="row">
+										<div class="col-md-6 mb-3">
+											<select asp-for="Input.Gender" asp-items="@Html.GetEnumSelectList<Gender>()" class="form-control">
+												<option value="" selected="">Избери пол...</option>
+											</select>
+											<span asp-validation-for="Input.Gender" class="text-danger"></span>
+										</div>
+										<div class="col-md-6 mb-3">
+											<input asp-for="Input.BirthDate" class="form-control" type="text" placeholder="Дата на раждане" onfocus="(this.type = 'date')">
+											<span asp-validation-for="Input.BirthDate" class="text-danger"></span>
+										</div>
+									</div>
+								</div>
+								<div class="form-group">
+									<div class="row">
+										<div class="col-md-6 mb-3">
+											<select asp-for="Input.TownId" class="form-control">
+												<option value="" selected="">Избери населено място...</option>
+												@foreach (var town in await TownsService.GetAllTowns())
+												{
+													<option value="@town.Id">@town.Name</option>
+												}
+											</select>
+											<span asp-validation-for="Input.TownId" class="text-danger"></span>
+										</div>
+										<div class="col-md-6 mb-3">
+											<select asp-for="Input.SpecialtyId" class="form-control">
+												<option value="" selected="">Избери своята специалност...</option>
+												@foreach (var specialty in await SpecialtiesService.GetAllSpecialties())
+												{
+													<option value="@specialty.Id">@specialty.Name</option>
+												}
+											</select>
+											<span asp-validation-for="Input.SpecialtyId" class="text-danger"></span>
+										</div>
+									</div>
+								</div>
+								<div class="form-group">
+									<input asp-for="Input.Email" class="form-control" placeholder="Имейл">
+									<span asp-validation-for="Input.Email" class="text-danger"></span>
+								</div>
+								<div class="form-group">
+									<div class="row">
+										<div class="col-md-6 mb-3">
+											<input asp-for="Input.Password" type="password" class="form-control" placeholder="Парола">
+											<span asp-validation-for="Input.Password" class="text-danger"></span>
+										</div>
+										<div class="col-md-6 mb-3">
+											<input asp-for="Input.ConfirmPassword" type="password" class="form-control" placeholder="Повтори паролата">
+											<span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+										</div>
+									</div>
+								</div>
+								<div class="form-group">
+									<textarea asp-for="Input.SmallInfo" class="form-control" placeholder="Разкажете ни накратко за себе се"></textarea>
+									<span asp-validation-for="Input.SmallInfo" class="text-danger"></span>
+								</div>
+								<div class="form-group">
+									<textarea asp-for="Input.Education" class="form-control" placeholder="Какво образование имате?"></textarea>
+									<span asp-validation-for="Input.Education" class="text-danger"></span>
+								</div>
+								<div class="form-group">
+									<textarea asp-for="Input.Qualifications" class="form-control" placeholder="Имате ли някакви придобити квалификации?"></textarea>
+									<span asp-validation-for="Input.Qualifications" class="text-danger"></span>
+								</div>
+								<div class="form-group">
+									<textarea asp-for="Input.Biography" class="form-control" placeholder="Разкажете за предишни работни позиции"></textarea>
+									<span asp-validation-for="Input.Biography" class="text-danger"></span>
+								</div>
+								<div class="form-group">
+									<div class="btn btn-light">
+										<span>Профилна снимка</span>
+										<input asp-for="Input.Image">
+										<span asp-validation-for="Input.Image" class="text-danger"></span>
+									</div>
+								</div>
+								<input type="hidden" asp-for="Input.Latitude" id="latitude" />
+								<input type="hidden" asp-for="Input.Longitude" id="longitude" />
+								<div class="mb-5"></div>
+								<button type="submit" class="btn btn-primary btn-user btn-block" onclick="getCurrentLocation()">Регистрация</button>
+							</form>
+							<hr>
+							<div class="text-center">
+								<a class="small" href="/Identity/Account/Login">Вече имате акаунт? Влизане!</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </body>
 
 @section Scripts {
-    <partial name="_ValidationScriptsPartial" />
+	<partial name="_ValidationScriptsPartial" />
+	<script>
+		// Function to get user's current location
+		function getCurrentLocation() {
+			if (navigator.geolocation) {
+				navigator.geolocation.getCurrentPosition(showPosition);
+			} else {
+				console.log("Geolocation is not supported by this browser.");
+			}
+		}
+
+		// Callback function to show user's current location
+		function showPosition(position) {
+			document.getElementById("latitude").value = position.coords.latitude;
+			document.getElementById("longitude").value = position.coords.longitude;
+		}
+	</script>
 }

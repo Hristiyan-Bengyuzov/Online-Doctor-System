@@ -62,7 +62,7 @@ namespace OnlineDoctorSystem.Web.Areas.Identity.Pages.Account
                 this.ModelState.AddModelError("Image", "Invalid file type.");
             }
 
-            if (this.ModelState.IsValid)
+			if (this.ModelState.IsValid)
             {
                 CloudinaryDotNet.Account account = new CloudinaryDotNet.Account
                         (
@@ -111,6 +111,8 @@ namespace OnlineDoctorSystem.Web.Areas.Identity.Pages.Account
                     Qualifications = this.Input.Qualifications,
                     Biography = this.Input.Biography,
                     ImageUrl = imageUrl,
+                    Latitude = this.Input.Latitude,
+                    Longitude = this.Input.Longitude,
                 };
 
                 var result = await this.userManager.CreateAsync(user, this.Input.Password);
@@ -185,25 +187,22 @@ namespace OnlineDoctorSystem.Web.Areas.Identity.Pages.Account
             [Required(ErrorMessage = "Полето е задължително")]
             [MinLength(30)]
             [MaxLength(200)]
-            [DataType(DataType.MultilineText, ErrorMessage = "Полето трябва да съдържа минимум 30 символа.")]
             public string SmallInfo { get; set; }
 
             [Required(ErrorMessage = "Полето е задължително")]
             [MinLength(30)]
             [MaxLength(200)]
-            [DataType(DataType.MultilineText, ErrorMessage = "Полето трябва да съдържа минимум 30 символа.")]
             public string Education { get; set; }
 
             [Required(ErrorMessage = "Полето е задължително")]
             [MinLength(30)]
             [MaxLength(200)]
-            [DataType(DataType.MultilineText, ErrorMessage = "Полето трябва да съдържа минимум 30 символа.")]
+
             public string Qualifications { get; set; }
 
             [Required(ErrorMessage = "Полето е задължително")]
             [MinLength(30)]
             [MaxLength(200)]
-            [DataType(DataType.MultilineText, ErrorMessage = "Полето трябва да съдържа минимум 30 символа.")]
             public string Biography { get; set; }
 
             [Required(ErrorMessage = "Полето е задължително")]
@@ -222,6 +221,10 @@ namespace OnlineDoctorSystem.Web.Areas.Identity.Pages.Account
 
             [Required(ErrorMessage = "Снимката е задължителна")]
             public IFormFile Image { get; set; }
+
+            public double Latitude { get; set; } 
+
+            public double Longitude { get; set; } 
         }
     }
 }
