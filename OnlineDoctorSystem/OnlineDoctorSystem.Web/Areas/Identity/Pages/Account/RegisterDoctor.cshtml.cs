@@ -1,30 +1,19 @@
-using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
 using System.Text;
-using System.Text.Encodings.Web;
-using System.Threading.Tasks;
 
 using CloudinaryDotNet;
 using CloudinaryDotNet.Actions;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Logging;
 using OnlineDoctorSystem.Common;
 using OnlineDoctorSystem.Data.Models;
 using OnlineDoctorSystem.Data.Models.Enums;
 using OnlineDoctorSystem.Services.Data.Interfaces;
-using OnlineDoctorSystem.Services.Data;
-
 
 namespace OnlineDoctorSystem.Web.Areas.Identity.Pages.Account
 {

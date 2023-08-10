@@ -36,6 +36,9 @@
 							<li class="nav-item">
 								<a class="nav-link text-dark" asp-area="" asp-controller="Consultation" asp-action="GetUsersConsultations">Моите консултации</a>
 							</li>
+							<li class="nav-item">
+								<a class="nav-link text-dark" asp-area="" asp-controller="Contact" asp-action="Add">Контакти</a>
+							</li>
 						}
 						
 						@if (User.IsDoctor())
@@ -46,6 +49,9 @@
 									<a class="dropdown-item text-dark" asp-controller="Doctor" asp-action="GetUnconfirmedConsultations">Непотвърдени консултации</a>
 									<a class="dropdown-item text-dark" asp-controller="Consultation" asp-action="GetUsersConsultations">Моите консултации</a>
 								</div>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link text-dark" asp-area="" asp-controller="Contact" asp-action="Add">Контакти</a>
 							</li>
 						}
 						<li class="nav-item">

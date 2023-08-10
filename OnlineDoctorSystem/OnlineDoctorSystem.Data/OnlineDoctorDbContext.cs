@@ -28,6 +28,8 @@ namespace OnlineDoctorSystem.Data
 
 		public DbSet<CalendarEvent> CalendarEvents { get; set; } = null!;
 
+		public DbSet<ContactSubmission> ContactSubmissions { get; set; } = null!;
+
 		protected override void OnModelCreating(ModelBuilder builder)
 		{
 			Assembly configAssembly = Assembly.GetAssembly(typeof(OnlineDoctorDbContext)) ??

@@ -49,5 +49,7 @@ namespace OnlineDoctorSystem.Data.Models
         public string Biography { get; set; }
 
         public virtual ICollection<Consultation> Consultations { get; set; }
+
+        public bool? IsConfirmed { get; set; }
     }
 }
