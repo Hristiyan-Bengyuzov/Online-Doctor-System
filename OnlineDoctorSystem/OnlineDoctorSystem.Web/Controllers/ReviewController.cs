@@ -29,12 +29,14 @@ namespace OnlineDoctorSystem.Web.Controllers
 		[HttpPost]
 		public async Task<IActionResult> Add(AddReviewFormModel model)
 		{
+			model.DoctorName = await this.doctorsService.GetDoctorNameByIdAsync(model.DoctorId);
+
 			if (!ModelState.IsValid)
 			{
 				return this.View(model);
 			}
 
-			await this.reviewsService.AddReviewAsync(model);	
+			await this.reviewsService.AddReviewAsync(model);
 			return this.RedirectToAction("Details", "Doctor", new { id = model.DoctorId });
 		}
 
