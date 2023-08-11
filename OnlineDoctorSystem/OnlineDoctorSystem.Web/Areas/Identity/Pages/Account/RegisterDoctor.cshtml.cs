@@ -52,8 +52,8 @@ namespace OnlineDoctorSystem.Web.Areas.Identity.Pages.Account
 
         public async Task<IActionResult> OnPostAsync(string? returnUrl = null)
         {
-            returnUrl ??= this.Url.Action("ThankYou", "Patient");
-            ReturnUrl = returnUrl;
+			returnUrl ??= this.Url.Content("~/Doctor/ThankYou");
+			ReturnUrl = returnUrl;
             this.ExternalLogins = (await this.signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
 
             var allowedExtensions = new[] { ".jpg", ".jpeg", ".png", ".gif" };

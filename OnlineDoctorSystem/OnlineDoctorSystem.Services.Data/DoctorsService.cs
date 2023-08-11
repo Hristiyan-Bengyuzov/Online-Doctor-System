@@ -51,7 +51,7 @@ namespace OnlineDoctorSystem.Services.Data
 			if (queryModel.Latitude != 0)
 			{
 				UpdateDoctorDistance(queryModel.Latitude, queryModel.Longitude);
-				doctorsQuery = doctorsQuery.OrderByDescending(d => d.Distance);
+				doctorsQuery = doctorsQuery.OrderBy(d => d.Distance);
 			}
 
 			IEnumerable<AllDoctorsViewModel> allDoctors = doctorsQuery
