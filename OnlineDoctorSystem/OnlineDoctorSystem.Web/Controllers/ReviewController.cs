@@ -34,9 +34,8 @@ namespace OnlineDoctorSystem.Web.Controllers
 				return this.View(model);
 			}
 
-			await this.reviewsService.AddReviewAsync(model);
-			return this.View(model);	
-			//return this.RedirectToAction("Details", "Doctor", new { id = model.DoctorId });
+			await this.reviewsService.AddReviewAsync(model);	
+			return this.RedirectToAction("Details", "Doctor", new { id = model.DoctorId });
 		}
 
 

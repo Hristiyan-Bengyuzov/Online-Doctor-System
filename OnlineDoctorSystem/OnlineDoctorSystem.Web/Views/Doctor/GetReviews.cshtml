@@ -19,7 +19,7 @@
 		</div>
 		<div class="row">
 			<div class="col-md-12">
-				@foreach (var review in Model)
+				@foreach (var review in Model.OrderByDescending(r => r.Rating))
 				{
 					<div class="card mb-4">
 						<div class="card-body">
