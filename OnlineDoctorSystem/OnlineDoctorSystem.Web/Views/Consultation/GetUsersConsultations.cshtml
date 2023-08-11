@@ -11,26 +11,6 @@
 	<a class="btn btn-success" asp-controller="Consultation" asp-action="UserCalendar">Виж в календарен вид</a>
 </div>
 
-<div class="modal">
-	<div class="modal-dialog" role="document">
-		<div class="modal-content">
-			<div class="modal-header">
-				<h5 class="modal-title">Modal title</h5>
-				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-					<span aria-hidden="true"></span>
-				</button>
-			</div>
-			<div class="modal-body">
-				<p>Modal body text goes here.</p>
-			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-danger" onclick="document.getElementById('deleteForm').submit();">Да</button>
-				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-			</div>
-		</div>
-	</div>
-</div>
-
 <br />
 @if (this.User.IsPatient())
 {
@@ -45,7 +25,7 @@
 				<th>Описание</th>
 				<th>Анулиране</th>
 			</tr>
-			@foreach (var consultation in Model.Where(x => x.IsActive && (bool)x.IsConfirmed!))
+			@foreach (var consultation in Model.Where(x => x.IsActive && x.IsConfirmed == true))
 			{
 				<tr>
 					<th>@consultation.Date.ToShortDateString()</th>
@@ -55,9 +35,7 @@
 					<th>@consultation.Description</th>
 
 					<th>
-						<button class="btn btn-danger" data-toggle="modal" data-target="#deleteModal">АНУЛИРАНЕ</button>
-						<form method="post" asp-controller="Consultation" asp-action="Remove" id="deleteForm" name="deleteForm" asp-route-eventId=@consultation.Id>
-						</form>
+						<a asp-controller="Consultation" asp-action="RemoveConsultation" asp-route-eventId="@consultation.EventId" class="btn btn-danger">АНУЛИРАНЕ</a>
 					</th>
 				</tr>
 			}
@@ -120,7 +98,7 @@ else
 				<th>Описание</th>
 				<th>Анулиране</th>
 			</tr>
-			@foreach (var consultation in Model.Where(x => x.IsActive && (bool)x.IsConfirmed!))
+			@foreach (var consultation in Model.Where(x => x.IsActive && x.IsConfirmed == true))
 			{
 				<tr>
 					<th>@consultation.Date.ToShortDateString()</th>
@@ -129,9 +107,7 @@ else
 					<th>@consultation.PatientName</th>
 					<th>@consultation.Description</th>
 					<th>
-						<button class="btn btn-danger" data-toggle="modal" data-target="#deleteModal">АНУЛИРАНЕ</button>
-						<form method="post" asp-controller="Consultation" asp-action="Remove" id="deleteForm" name="deleteForm" asp-route-Id=@consultation.Id>
-						</form>
+						<a asp-controller="Consultation" asp-action="RemoveConsultation" asp-route-eventId="@consultation.EventId" class="btn btn-danger">АНУЛИРАНЕ</a>
 					</th>
 				</tr>
 			}
@@ -181,19 +157,3 @@ else
 		</table>
 	</div>
 }
-
-@*<div class="modal" tabindex="-1" role="dialog" id="deletemodal">
-	<div class="modal-dialog" role="document">
-		<div class="modal-content">
-			<div class="modal-body">
-				<h4>сигурни ли сте, че искате да изтриете консултацията?</h4>
-				<p>след това няма да може да я възстановите!</p>
-			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-danger" onclick="document.getelementbyid('deleteform').submit();">да</button>
-				<button type="button" class="btn btn-success" data-dismiss="modal">не</button>
-			</div>
-		</div>
-	</div>
-</div>
-*@
