@@ -1,6 +1,7 @@
 ﻿using OnlineDoctorSystem.Data.Models;
 using OnlineDoctorSystem.Services.Data.Models.Doctors;
 using OnlineDoctorSystem.Web.ViewModels.Doctors;
+using OnlineDoctorSystem.Web.ViewModels.Reviews;
 
 namespace OnlineDoctorSystem.Services.Data.Interfaces
 {
@@ -12,5 +13,7 @@ namespace OnlineDoctorSystem.Services.Data.Interfaces
         Task<string> GetDoctorNameByIdAsync(string id);
         Task<Doctor> GetDoctorByUserIdAsync(string id);
         Task<Doctor> GetDoctorByIdAsync(string id);
+
+        Task<IEnumerable<ReviewViewModel>> GetDoctorReviewsAsync(string id);
     }
 }

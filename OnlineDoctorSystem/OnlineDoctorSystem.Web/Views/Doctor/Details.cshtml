@@ -1,57 +1,69 @@
 ﻿@model OnlineDoctorSystem.Web.ViewModels.Doctors.DoctorDetailsViewModel
 
 @{
-    ViewData["Title"] = "Doctor Details";
+	ViewData["Title"] = "Doctor Details";
 }
 
 <div class="container">
-    <div class="row mt-5">
-        <div class="col-md-12">
-            <div class="card">
-                <img src="@Model.ImageUrl" class="card-img-top doctor-image" alt="@Model.Name">
-                <div class="card-body">
-                    <h5 class="card-title">@Model.Name</h5>
-                    <p class="card-text">@Model.SmallInfo</p>
-                    <hr>
-                    <p><strong>Specialty:</strong> @Model.Specialty</p>
-                    <p><strong>Town:</strong> @Model.Town</p>
-                    <hr>
-                    <p><strong>Education:</strong></p>
-                    <p>@Model.Education</p>
-                    <hr>
-                    <p><strong>Qualifications:</strong></p>
-                    <p>@Model.Qualifications</p>
-                    <hr>
-                    <p><strong>Biography:</strong></p>
-                    <p>@Model.Biography</p>
-                    <a asp-controller="Consultation" asp-action="Add" asp-route-id="@Model.Id" class="btn btn-primary btn-lg">Запази час</a>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+	<div class="row mt-5">
+		<div class="col-md-12">
+			<div class="card">
+				<img src="@Model.ImageUrl" class="card-img-top doctor-image" alt="@Model.Name">
+				<div class="card-body">
+					<h5 class="card-title">@Model.Name</h5>
+					<p class="card-text">@Model.SmallInfo</p>
+					<div>
+						@for (int i = 0; i < Math.Round(Model.AverageRating()); i++)
+						{
+							<i class="fas fa-star" style="color: gold;"></i>
+						}
+					</div>
+					<div class="d-flex align-items-center">
+						<a asp-controller="Doctor" asp-action="GetReviews" asp-route-id="@Model.Id" class="btn btn-outline-info mt-2 mr-3" data-scrollto="reviews" data-offset="60" rel="nofollow">
+							@Model.Reviews.Count отзива
+						</a>
+					</div>
+					<hr>
+					<p><strong>Specialty:</strong> @Model.Specialty</p>
+					<p><strong>Town:</strong> @Model.Town</p>
+					<hr>
+					<p><strong>Education:</strong></p>
+					<p>@Model.Education</p>
+					<hr>
+					<p><strong>Qualifications:</strong></p>
+					<p>@Model.Qualifications</p>
+					<hr>
+					<p><strong>Biography:</strong></p>
+					<p>@Model.Biography</p>
+					<a asp-controller="Consultation" asp-action="Add" asp-route-id="@Model.Id" class="btn btn-primary btn-lg">Запази час</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>>
 
 <style>
-    .doctor-image {
-        max-width: 300px;
-        margin: auto;
-        display: block;
-    }
-    .card {
-        max-width: 500px;
-        margin: 20px auto;
-    }
+	.doctor-image {
+		max-width: 300px;
+		margin: auto;
+		display: block;
+	}
 
-    .card-body {
-        padding: 20px;
-    }
+	.card {
+		max-width: 500px;
+		margin: 20px auto;
+	}
 
-    .card-title {
-        font-size: 24px;
-        font-weight: bold;
-    }
+	.card-body {
+		padding: 20px;
+	}
 
-    .card-text {
-        font-size: 16px;
-    }
+	.card-title {
+		font-size: 24px;
+		font-weight: bold;
+	}
+
+	.card-text {
+		font-size: 16px;
+	}
 </style>

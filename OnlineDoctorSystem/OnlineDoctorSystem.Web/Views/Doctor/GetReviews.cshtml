@@ -1,0 +1,44 @@
+﻿@using OnlineDoctorSystem.Web.ViewModels.Reviews;
+@model IEnumerable<ReviewViewModel>
+
+<div class="container">
+	@if (!Model.Any())
+	{
+		<div class="row mt-5">
+			<div class="col-md-12">
+				<h1 class="text-center">Няма никакви отзиви към момента</h1>
+			</div>
+		</div>
+	}
+	else
+	{
+		<div class="row mt-5">
+			<div class="col-md-12">
+				<h1 class="text-center">Отзиви:</h1>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				@foreach (var review in Model)
+				{
+					<div class="card mb-4">
+						<div class="card-body">
+							<h3 class="card-title">Общ отзив:</h3>
+							@for (int i = 0; i < Math.Round(review.Rating); i++)
+							{
+								<i class="fas fa-star" style="color: gold;"></i>
+							}
+							<div class="mt-2">
+								<h3 class="card-title">Обратна връзка:</h3>
+								@if (!string.IsNullOrEmpty(review.Text))
+								{
+									<p class="card-text">@review.Text</p>
+								}
+							</div>
+						</div>
+					</div>
+				}
+			</div>
+		</div>
+	}
+</div>
