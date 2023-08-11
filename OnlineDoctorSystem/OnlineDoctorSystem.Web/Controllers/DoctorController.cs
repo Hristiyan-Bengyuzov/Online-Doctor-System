@@ -24,14 +24,14 @@ namespace OnlineDoctorSystem.Web.Controllers
 
         [HttpGet]
         [AllowAnonymous]
-        public async Task<IActionResult> All([FromQuery] AllDoctorsQueryModel queryModel)
+        public IActionResult All([FromQuery] AllDoctorsQueryModel queryModel)
         {
-            AllDoctorsFilteredAndPagedServiceModel serviceModel = await this.doctorsService.AllAsync(queryModel);
+            AllDoctorsFilteredAndPagedServiceModel serviceModel = this.doctorsService.All(queryModel);
 
             queryModel.Doctors = serviceModel.Doctors;
             queryModel.TotalDoctors = serviceModel.TotalDoctorsCount;
-            queryModel.Specialties = await this.specialtiesService.AllSpecialtyNamesAsync();
-            queryModel.Towns = await this.townsService.AllTownNamesAsync();
+            queryModel.Specialties = this.specialtiesService.AllSpecialtyNamesAsync().Result;
+            queryModel.Towns = this.townsService.AllTownNamesAsync().Result;
 
             return this.View(queryModel);
         }

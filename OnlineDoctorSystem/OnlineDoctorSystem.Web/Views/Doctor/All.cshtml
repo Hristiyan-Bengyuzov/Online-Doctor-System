@@ -36,6 +36,12 @@
 			<label asp-for="Name"></label>
 			<input asp-for="Name" class="form-control" placeholder="...">
 		</div>
+		<div class="form-group col-md-3">
+			<label>Sort by Proximity</label>
+			<input type="checkbox" id="sortByProximity" class="form-check-input">
+		</div>
+		<input type="hidden" asp-for="Latitude" id="latitude" />
+		<input type="hidden" asp-for="Longitude" id="longitude" />
 		<div class="col-md-3">
 			<div class="form-group mt-4 p-2">
 				<input type="submit" value="Search" class="btn btn-primary" />
@@ -63,7 +69,10 @@
 		   asp-route-currentPage="@previousPage"
 		   asp-route-specialty="@Model.Specialty"
 		   asp-route-town="@Model.Town"
-		   asp-route-name="@Model.Name"><<</a>
+		   asp-route-name="@Model.Name"
+		   asp-route-latitude="@Model.Latitude"
+		   asp-route-longitude="@Model.Longitude"
+		   ><<</a>
 	</div>
 
 	@{
@@ -79,7 +88,9 @@
 		   asp-route-specialty="@Model.Specialty"
 		   asp-route-town="@Model.Town"
 		   asp-route-name="@Model.Name"
-	>>></a>
+		   asp-route-latitude="@Model.Latitude"
+		   asp-route-longitude="@Model.Longitude"
+		   >>></a>
 	</div>
 </div>
 
@@ -94,3 +105,34 @@
 		<partial name="_DoctorPartial" model="@doctor" />
 	}
 </div>
+
+@section Scripts{
+	<script>
+		document.addEventListener("DOMContentLoaded", function () {
+			const sortByProximityCheckbox = document.getElementById("sortByProximity");
+			const latitudeInput = document.getElementById("latitude");
+			const longitudeInput = document.getElementById("longitude");
+
+			sortByProximityCheckbox.addEventListener("change", async function () {
+				if (sortByProximityCheckbox.checked) {
+					try {
+						const position = await getCurrentCoordinates();
+						latitudeInput.value = position.coords.latitude;
+						longitudeInput.value = position.coords.longitude;
+					} catch (error) {
+						console.error("Error getting user coordinates:", error);
+					}
+				} else {
+					latitudeInput.value = "";
+					longitudeInput.value = "";
+				}
+			});
+
+			async function getCurrentCoordinates() {
+				return new Promise((resolve, reject) => {
+					navigator.geolocation.getCurrentPosition(resolve, reject);
+				});
+			}
+		});
+	</script>
+}
