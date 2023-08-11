@@ -14,8 +14,7 @@
 		<textarea asp-for="Instructions" class="form-control" placeholder="Въведете допълнителни инструкции" style="margin-top: 8px;"></textarea>
 		<span asp-validation-for="Instructions" class="text-danger"></span>
 	</div>
-	<input type="hidden" asp-for="PatientId" value="@Model.PatientId" />
-
+	<input type="hidden" asp-for="PatientId" />
 	<div class="text-center mt-3">
 		<button type="submit" class="btn btn-success btn-lg">Добавяне на предписание</button>
 	</div>

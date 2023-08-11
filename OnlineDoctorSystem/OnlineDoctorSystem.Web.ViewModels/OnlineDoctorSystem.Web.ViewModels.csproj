@@ -7,10 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Prescriptions\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\OnlineDoctorSystem.Data.Models\OnlineDoctorSystem.Data.Models.csproj" />
   </ItemGroup>
 

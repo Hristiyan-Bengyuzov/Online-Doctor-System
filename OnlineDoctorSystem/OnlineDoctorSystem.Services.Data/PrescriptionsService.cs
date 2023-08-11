@@ -21,7 +21,7 @@ namespace OnlineDoctorSystem.Services.Data
 				Doctor = model.Doctor!,
 				DoctorId = model.Doctor!.Id,
 				Patient = model.Patient!,
-				PatientId = Guid.Parse(model.PatientId),
+				PatientId = Guid.Parse(model.PatientId!),
 				MedicamentName = model.MedicamentName,
 				Instructions = model.Instructions,
 			};
