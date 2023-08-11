@@ -28,9 +28,9 @@ namespace OnlineDoctorSystem.Data.Models
 
         public DateTime BirthDate { get; set; }
 
-        public string DoctorUserId { get; set; }
+        public string? DoctorUserId { get; set; }
 
-        public virtual ApplicationUser User { get; set; }
+        public virtual ApplicationUser? User { get; set; }
 
         public virtual ICollection<Prescription> Prescriptions { get; set; }
 
@@ -57,5 +57,11 @@ namespace OnlineDoctorSystem.Data.Models
         public double Longitude { get; set; }
 
         public double Distance { get; set; }
+
+        public bool IsFromThirdParty { get; set; }
+
+        public string? LinkFromThirdParty { get; set; }
+
+        public string? ContactEmailFromThirdParty  { get; set; }
     }
 }

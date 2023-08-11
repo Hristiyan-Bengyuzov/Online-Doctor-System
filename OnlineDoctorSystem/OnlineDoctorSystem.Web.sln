@@ -29,6 +29,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnlineDoctorSystem.Web.View
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnlineDoctorSystem.Services.Data.Models", "OnlineDoctorSystem.Services.Data.Models\OnlineDoctorSystem.Services.Data.Models.csproj", "{3BB2A97E-EDEE-4E08-B64B-78D364BA6843}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineDoctorSystem.Services.Scraping", "OnlineDoctorSystem.Services.Scraping\OnlineDoctorSystem.Services.Scraping.csproj", "{F79B133D-FE4A-40DB-B01F-60A654B37015}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -71,6 +73,10 @@ Global
 		{3BB2A97E-EDEE-4E08-B64B-78D364BA6843}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3BB2A97E-EDEE-4E08-B64B-78D364BA6843}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3BB2A97E-EDEE-4E08-B64B-78D364BA6843}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F79B133D-FE4A-40DB-B01F-60A654B37015}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F79B133D-FE4A-40DB-B01F-60A654B37015}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F79B133D-FE4A-40DB-B01F-60A654B37015}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F79B133D-FE4A-40DB-B01F-60A654B37015}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -85,6 +91,7 @@ Global
 		{AC54C8C7-503A-4E1C-A8FA-9FD7E5DABA32} = {83E23F85-C714-4673-BB32-49BE492D6DCF}
 		{43C3D81A-8D0F-456C-BC08-E70BAC5D4041} = {83E23F85-C714-4673-BB32-49BE492D6DCF}
 		{3BB2A97E-EDEE-4E08-B64B-78D364BA6843} = {3BEDE0E7-9BDF-455F-B27E-2BC37353B625}
+		{F79B133D-FE4A-40DB-B01F-60A654B37015} = {3BEDE0E7-9BDF-455F-B27E-2BC37353B625}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C1160D3D-75BB-4F22-B355-370893B54A2F}

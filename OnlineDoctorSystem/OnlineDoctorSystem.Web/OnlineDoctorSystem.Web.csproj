@@ -18,13 +18,14 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.Extensions.Identity.Stores" Version="6.0.20" />
-    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.15" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.16" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\OnlineDoctorSystem.Data.Models\OnlineDoctorSystem.Data.Models.csproj" />
     <ProjectReference Include="..\OnlineDoctorSystem.Data\OnlineDoctorSystem.Data.csproj" />
     <ProjectReference Include="..\OnlineDoctorSystem.Services.Data\OnlineDoctorSystem.Services.Data.csproj" />
+    <ProjectReference Include="..\OnlineDoctorSystem.Services.Scraping\OnlineDoctorSystem.Services.Scraping.csproj" />
     <ProjectReference Include="..\OnlineDoctorSystem.Web.Infrastructure\OnlineDoctorSystem.Web.Infrastructure.csproj" />
   </ItemGroup>
 </Project>

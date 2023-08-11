@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using OnlineDoctorSystem.Data;
 
@@ -11,9 +12,10 @@ using OnlineDoctorSystem.Data;
 namespace OnlineDoctorSystem.Data.Migrations
 {
     [DbContext(typeof(OnlineDoctorDbContext))]
-    partial class OnlineDoctorDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230811104105_AddedFieldsForScraper")]
+    partial class AddedFieldsForScraper
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -387,6 +389,7 @@ namespace OnlineDoctorSystem.Data.Migrations
                         .HasColumnType("float");
 
                     b.Property<string>("DoctorUserId")
+                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Education")
@@ -448,8 +451,7 @@ namespace OnlineDoctorSystem.Data.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("DoctorUserId")
-                        .IsUnique()
-                        .HasFilter("[DoctorUserId] IS NOT NULL");
+                        .IsUnique();
 
                     b.HasIndex("SpecialtyId");
 
@@ -727,7 +729,8 @@ namespace OnlineDoctorSystem.Data.Migrations
                     b.HasOne("OnlineDoctorSystem.Data.Models.ApplicationUser", "User")
                         .WithOne("Doctor")
                         .HasForeignKey("OnlineDoctorSystem.Data.Models.Doctor", "DoctorUserId")
-                        .OnDelete(DeleteBehavior.Restrict);
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
 
                     b.HasOne("OnlineDoctorSystem.Data.Models.Specialty", "Specialty")
                         .WithMany("Doctors")

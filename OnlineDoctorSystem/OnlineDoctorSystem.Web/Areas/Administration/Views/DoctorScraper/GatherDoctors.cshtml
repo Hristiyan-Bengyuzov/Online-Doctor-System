@@ -1,0 +1,28 @@
+﻿@{
+	this.ViewData["Title"] = "Добавяне на лекари";
+	Layout = "_Layout";
+}
+@using OnlineDoctorSystem.Services.Data.Interfaces;
+@model OnlineDoctorSystem.Web.ViewModels.Doctors.DoctorsScraperFormModel
+@inject ITownsService TownsService
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+<h1 class="text-center">@this.ViewData["Title"]</h1>
+<form method="post" asp-controller="DoctorScraper" asp-action="GatherDoctors">
+    <div class="form-group">
+        <label asp-for="DoctorsCount">Въведете брой</label>
+        <input asp-for="DoctorsCount" class="form-control" />
+        <span asp-validation-for="DoctorsCount" class="text-danger"></span>
+    </div>
+	<div class="col-md-6 mb-3">
+		<select asp-for="TownId" class="form-control">
+			<option value="" selected="">Избери населено място...</option>
+			@foreach (var town in await TownsService.GetAllTowns())
+			{
+				<option value="@town.Id">@town.Name</option>
+			}
+		</select>
+		<span asp-validation-for="TownId" class="text-danger"></span>
+	</div>
+	<button class="btn btn-success" type="submit">Добави</button>
+</form>
