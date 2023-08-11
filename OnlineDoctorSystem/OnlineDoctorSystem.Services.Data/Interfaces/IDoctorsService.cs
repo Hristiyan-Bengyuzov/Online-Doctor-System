@@ -13,7 +13,9 @@ namespace OnlineDoctorSystem.Services.Data.Interfaces
         Task<string> GetDoctorNameByIdAsync(string id);
         Task<Doctor> GetDoctorByUserIdAsync(string id);
         Task<Doctor> GetDoctorByIdAsync(string id);
-
         Task<IEnumerable<ReviewViewModel>> GetDoctorReviewsAsync(string id);
+        Task<IEnumerable<Doctor>> GetUnconfirmedDoctorsAsync();
+        Task ApproveDoctorAsync(string id);
+        Task DeclineDoctorAsync(string id);
     }
 }

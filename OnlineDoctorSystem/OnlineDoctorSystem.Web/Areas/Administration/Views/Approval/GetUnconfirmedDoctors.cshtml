@@ -1,0 +1,33 @@
+﻿@using OnlineDoctorSystem.Data.Models;
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model IEnumerable<Doctor>
+@{
+	this.ViewBag.Title = "Непотвърдени лекари";
+	Layout = "_Layout";
+}
+
+<div class="text-center">
+	<h1>@this.ViewData["Title"]</h1>
+</div>
+<br />
+<div class="text-center">
+	<table class="table table-striped table-hover table-sm">
+		<tr>
+			<th>Име</th>
+			<th>Специалност</th>
+			<th>Град</th>
+			<th>Приеми</th>
+			<th>Откажи</th>
+		</tr>
+		@foreach (var doctor in Model)
+		{
+			<tr>
+				<th>@doctor.Name</th>
+				<th>@doctor.Specialty.Name</th>
+				<th>@doctor.Town.Name</th>
+				<th><a asp-area="Administration" asp-controller="Approval" asp-action="ApproveDoctor" asp-route-doctorId="@doctor.Id" class="btn btn-success">Приемане</a></th>
+				<th><a asp-area="Administration" asp-controller="Approval" asp-action="DeclineDoctor" asp-route-doctorId="@doctor.Id" class="btn btn-danger">Отказване</a></th>
+			</tr>
+		}
+	</table>
+</div>
