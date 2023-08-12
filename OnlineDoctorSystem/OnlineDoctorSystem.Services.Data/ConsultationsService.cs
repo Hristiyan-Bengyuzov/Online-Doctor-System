@@ -24,10 +24,10 @@ namespace OnlineDoctorSystem.Services.Data
 			{
 				return false;
 			}
-			//else if (model.Date < DateTime.Now)
-			//{
-			//    return false;
-			//}
+			else if (model.Date < DateTime.Now)
+			{
+				return false;
+			}
 
 			return true;
 		}
