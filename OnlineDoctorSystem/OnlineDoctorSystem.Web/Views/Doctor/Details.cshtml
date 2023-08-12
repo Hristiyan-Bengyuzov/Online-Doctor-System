@@ -4,64 +4,15 @@
 	ViewData["Title"] = "Doctor Details";
 }
 
-<div class="container">
-	<div class="row mt-5">
-		<div class="col-md-12">
-			<div class="card">
-				<img src="@Model.ImageUrl" class="card-img-top doctor-image" alt="@Model.Name">
-				<div class="card-body">
-					<h5 class="card-title">@Model.Name</h5>
-					<p class="card-text">@Model.SmallInfo</p>
-					@if (!Model.IsFromThirdParty)
-					{
-						<div>
-							@for (int i = 0; i < Math.Round(Model.AverageRating()); i++)
-							{
-								<i class="fas fa-star" style="color: gold;"></i>
-							}
-						</div>
-						<div class="d-flex align-items-center">
-							<a asp-controller="Doctor" asp-action="GetReviews" asp-route-id="@Model.Id" class="btn btn-outline-info mt-2 mr-3" data-scrollto="reviews" data-offset="60" rel="nofollow">
-								@Model.Reviews.Count отзива
-							</a>
-						</div>
-					}
-					<hr>
-					<p><strong>Specialty:</strong> @Model.Specialty</p>
-					<p><strong>Town:</strong> @Model.Town</p>
-					<hr>
-					<p><strong>Education:</strong></p>
-					<p>@Model.Education</p>
-					<hr>
-					<p><strong>Qualifications:</strong></p>
-					<p>@Model.Qualifications</p>
-					<hr>
-					<p><strong>Biography:</strong></p>
-					<p>@Model.Biography</p>
-					@if (Model.IsFromThirdParty)
-					{
-						<p class="text-danger">ВНИМАНИЕ! Този лекар е част от суперДок системата, ще бъдете пренасочени към неговият профил от долния бутон.</p>
-						<a href="@Model.LinkFromThirdParty" class="btn btn-success btn-outline-warning text-white">Запази час</a>
-					}
-					else
-					{
-						<a asp-controller="Consultation" asp-action="Add" asp-route-id="@Model.Id" class="btn btn-primary btn-lg">Запази час</a>
-					}
-				</div>
-			</div>
-		</div>
-	</div>
-</div>>
-
 <style>
 	.doctor-image {
-		max-width: 300px;
+		max-width: 100%;
 		margin: auto;
 		display: block;
 	}
 
 	.card {
-		max-width: 500px;
+		max-width: 800px;
 		margin: 20px auto;
 	}
 
@@ -72,9 +23,93 @@
 	.card-title {
 		font-size: 24px;
 		font-weight: bold;
+		margin-bottom: 10px;
 	}
 
 	.card-text {
 		font-size: 16px;
+		margin-bottom: 15px;
+	}
+
+	.special-info {
+		font-size: 18px;
+		margin-top: 10px;
+	}
+
+	.rating-stars {
+		margin-top: 10px;
+	}
+
+	.btn-container {
+		display: flex;
+		align-items: center;
+		margin-top: 15px;
+	}
+
+	.btn-custom {
+		margin-right: 15px;
+	}
+
+	.text-danger {
+		margin-top: 10px;
+	}
+
+	.btn-save {
+		margin-top: 10px;
 	}
 </style>
+
+<div class="container">
+	<div class="row mt-5">
+		<div class="col-md-12">
+			<div class="card">
+				<div class="card-body">
+					<div class="row">
+						<div class="col-md-4">
+							<img src="@Model.ImageUrl" class="doctor-image" alt="@Model.Name">
+						</div>
+						<div class="col-md-8">
+							<h5 class="card-title">@Model.Name</h5>
+							<p class="card-text">@Model.SmallInfo</p>
+							<div class="special-info">
+								<strong>Специалност:</strong> @Model.Specialty<br>
+								<strong>Град:</strong> @Model.Town
+							</div>
+							<hr>
+							@if (!Model.IsFromThirdParty)
+							{
+								<div class="rating-stars">
+									@for (int i = 0; i < Math.Round(Model.AverageRating()); i++)
+									{
+										<i class="fas fa-star" style="color: gold;"></i>
+									}
+									<a asp-controller="Doctor" asp-action="GetReviews" asp-route-id="@Model.Id" class="btn btn-outline-info btn-custom" data-scrollto="reviews" data-offset="60" rel="nofollow">
+										@Model.Reviews.Count отзива
+									</a>
+								</div>
+							}
+						</div>
+					</div>
+					<hr>
+					<p><strong>Образование:</strong></p>
+					<p>@Model.Education</p>
+					<hr>
+					<p><strong>Квалификации:</strong></p>
+					<p>@Model.Qualifications</p>
+					<hr>
+					<p><strong>Предишен опит:</strong></p>
+					<p>@Model.Biography</p>
+					@if (Model.IsFromThirdParty)
+					{
+						<p class="text-danger">ВНИМАНИЕ! Този лекар е част от суперДок системата, ще бъдете пренасочени към неговият профил от долния бутон.</p>
+						<a href="@Model.LinkFromThirdParty" class="btn btn-success btn-save text-white">Запази час</a>
+					}
+					else
+					{
+						<a asp-controller="Consultation" asp-action="Add" asp-route-id="@Model.Id" class="btn btn-primary btn-lg btn-save">Запази час</a>
+					}
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

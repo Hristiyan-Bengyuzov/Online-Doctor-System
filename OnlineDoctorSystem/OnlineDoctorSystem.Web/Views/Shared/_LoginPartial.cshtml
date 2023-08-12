@@ -1,8 +1,11 @@
 ﻿@using Microsoft.AspNetCore.Identity
 @using OnlineDoctorSystem.Data.Models;
+@using OnlineDoctorSystem.Services.Data.Interfaces;
 @using OnlineDoctorSystem.Web.Infrastructure.Extensions;
 @inject SignInManager<ApplicationUser> SignInManager
 @inject UserManager<ApplicationUser> UserManager
+@inject IDoctorsService DoctorsService
+@inject IPatientsService PatientsService
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 
 
@@ -21,6 +24,20 @@
 			</li>
 		}
 
+		if (this.User.IsDoctor())
+		{
+			<li class="nav-item text-dark">
+				Профил
+				<img style="max-width: 3rem; height: auto; border-radius: 50%;" title="Profile" asp-append-version="true" src="@this.DoctorsService.GetDoctorByUserIdAsync(this.User.GetId()!).Result.ImageUrl" />
+			</li>
+		}
+		else if (this.User.IsPatient())
+		{
+			<li class="nav-item">
+				Профил
+				<img style="max-width: 3rem; height: auto; border-radius: 50%;" title="Profile" asp-append-version="true" src="@this.PatientsService.GetPatientByUserIdAsync(this.User.GetId()!).Result.ImageUrl" />
+			</li>
+		}
 
 		<li class="nav-item">
 			<form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">

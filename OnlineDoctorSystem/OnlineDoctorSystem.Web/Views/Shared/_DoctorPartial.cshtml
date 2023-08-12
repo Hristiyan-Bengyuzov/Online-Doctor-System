@@ -1,4 +1,4 @@
-﻿﻿@{
+﻿@{
 	this.ViewData["Title"] = $"Всички доктори";
 }
 
@@ -9,11 +9,18 @@
 		<img class="card-img-top" src="@Model.ImageUrl" alt="Doctor Image">
 		<div class="card-body text-center">
 			<h4>@Model.Name</h4>
-			<h6>Town: <b>@Model.Town</b></h6>
-			<h6>Specialty: <b>@Model.Specialty</b></h6>
+			<h6>Град: <b>@Model.Town</b></h6>
+			<h6>Специалност: <b>@Model.Specialty</b></h6>
 			<br />
 			<a asp-controller="Doctor" asp-action="Details" asp-route-id="@Model.Id"
-			   class="btn btn-success">Details</a>
+			   class="btn btn-success">Детайли</a>
 		</div>
 	</div>
 </div>
+
+<style>
+	.card-img-top {
+		height: 350px;
+		object-fit: fill;
+	}
+</style>
