@@ -6,42 +6,43 @@ using OnlineDoctorSystem.Data.Models;
 
 namespace OnlineDoctorSystem.Data.Seeders
 {
-    public class PatientSeeder : ISeeder
-    {
-        public async Task SeedAsync(OnlineDoctorDbContext context, IServiceProvider serviceProvider)
-        {
-            var userManager = serviceProvider.GetRequiredService<UserManager<ApplicationUser>>();
-            await SeedPatientAsync(userManager, "patient@patient.com", context);
-        }
+	public class PatientSeeder : ISeeder
+	{
+		public async Task SeedAsync(OnlineDoctorDbContext context, IServiceProvider serviceProvider)
+		{
+			var userManager = serviceProvider.GetRequiredService<UserManager<ApplicationUser>>();
+			await SeedPatientAsync(userManager, "patient@patient.com", context);
+		}
 
-        private async Task SeedPatientAsync(UserManager<ApplicationUser> userManager, string username, OnlineDoctorDbContext context)
-        {
-            var user = new ApplicationUser()
-            {
-                UserName = username,
-                Email = username,
-                EmailConfirmed = true
-            };
+		private async Task SeedPatientAsync(UserManager<ApplicationUser> userManager, string username, OnlineDoctorDbContext context)
+		{
+			var user = new ApplicationUser()
+			{
+				UserName = username,
+				Email = username,
+				EmailConfirmed = true
+			};
 
-            var result = await userManager.CreateAsync(user, "Patient123");
+			var result = await userManager.CreateAsync(user, "Patient123");
 
-            if (result.Succeeded)
-            {
-                await userManager.AddToRoleAsync(user, GlobalConstants.PatientRole);
+			if (result.Succeeded)
+			{
+				await userManager.AddToRoleAsync(user, GlobalConstants.PatientRole);
 
-                var patient = new Patient
-                {
-                    Name = user.UserName,
-                    Phone = "+359 89 152 82 95",
-                    BirthDate = new DateTime(2005, 7, 12),
-                    TownId = 1,
-                    PatientUserId = user.Id,
-                    Gender = Gender.Male,
-                };
+				var patient = new Patient
+				{
+					Name = "Емил Сандев",
+					Phone = "+359 89 152 82 95",
+					BirthDate = new DateTime(2005, 7, 12),
+					TownId = 1,
+					PatientUserId = user.Id,
+					Gender = Gender.Male,
+					ImageUrl = "http://res.cloudinary.com/dvtgivokf/image/upload/v1691870618/tko77uylsehrffldg4j1.jpg",
+				};
 
-                await context.Patients.AddAsync(patient);
-                await context.SaveChangesAsync();
-            }
-        }
-    }
+				await context.Patients.AddAsync(patient);
+				await context.SaveChangesAsync();
+			}
+		}
+	}
 }
