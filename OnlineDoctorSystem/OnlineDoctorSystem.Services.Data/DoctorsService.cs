@@ -3,6 +3,7 @@ using OnlineDoctorSystem.Data;
 using OnlineDoctorSystem.Data.Models;
 using OnlineDoctorSystem.Services.Data.Interfaces;
 using OnlineDoctorSystem.Services.Data.Models.Doctors;
+using OnlineDoctorSystem.Web.Infrastructure.Utilities;
 using OnlineDoctorSystem.Web.ViewModels.Doctors;
 using OnlineDoctorSystem.Web.ViewModels.Reviews;
 
@@ -79,12 +80,11 @@ namespace OnlineDoctorSystem.Services.Data
 		{
 			foreach (var doctor in this.context.Doctors.ToList())
 			{
-				doctor.Distance = CalculateHaversineDistance(latitude, longitude, doctor.Latitude, doctor.Longitude);
+				doctor.Distance = Haversine.CalculateHaversineDistance(latitude, longitude, doctor.Latitude, doctor.Longitude);
 			}
 
 			this.context.SaveChanges();
 		}
-
 
 		public async Task<Doctor> GetDoctorByIdAsync(string id) => await this.context.Doctors.Include(d => d.Reviews).FirstAsync(d => d.Id.ToString() == id);
 
@@ -153,26 +153,6 @@ namespace OnlineDoctorSystem.Services.Data
 
 			doctor.IsConfirmed = false;
 			await this.context.SaveChangesAsync();
-		}
-
-		private double CalculateHaversineDistance(double startLatitude, double startLongitude, double endLatitude, double endLongitude)
-		{
-			double EARTH_RADIUS_KM = 6371.0;
-
-			double deltaLatitude = (endLatitude - startLatitude) * Math.PI / 180.0;
-			double deltaLongitude = (endLongitude - startLongitude) * Math.PI / 180.0;
-
-			double havHalfDeltaLat = Math.Sin(deltaLatitude / 2.0) * Math.Sin(deltaLatitude / 2.0);
-			double havHalfDeltaLon = Math.Sin(deltaLongitude / 2.0) * Math.Sin(deltaLongitude / 2.0);
-			double cosStartLat = Math.Cos(startLatitude * Math.PI / 180.0);
-			double cosEndLat = Math.Cos(endLatitude * Math.PI / 180.0);
-
-			double a = havHalfDeltaLat + cosStartLat * cosEndLat * havHalfDeltaLon;
-			double centralAngle = 2.0 * Math.Atan2(Math.Sqrt(a), Math.Sqrt(1.0 - a));
-
-			double distance = EARTH_RADIUS_KM * centralAngle;
-
-			return distance;
 		}
 	}
 }
