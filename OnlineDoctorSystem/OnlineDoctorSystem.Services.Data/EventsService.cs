@@ -55,9 +55,9 @@ namespace OnlineDoctorSystem.Services.Data
             await this.context.SaveChangesAsync();
         }
 
-        List<CalendarEvent> IEventsService.GetDoctorsEvents(string userId)
+        public List<CalendarEvent> GetDoctorsEvents(string userId)
         {
-            var doctor = this.doctorsService.GetDoctorByUserIdAsync(userId).Result;
+            var doctor = this.doctorsService.GetDoctorByUserIdAsync(userId).GetAwaiter().GetResult();
 
             var events = this.context.Consultations
                 .Include(c => c.CalendarEvent)
@@ -68,9 +68,9 @@ namespace OnlineDoctorSystem.Services.Data
             return events;
         }
 
-        List<CalendarEvent> IEventsService.GetPatientsEvents(string userId)
+        public List<CalendarEvent> GetPatientsEvents(string userId)
         {
-            var patient = this.patientsService.GetPatientByUserIdAsync(userId).Result;
+            var patient = this.patientsService.GetPatientByUserIdAsync(userId).GetAwaiter().GetResult();
 
             var events = this.context.Consultations
                 .Include(c => c.CalendarEvent)
