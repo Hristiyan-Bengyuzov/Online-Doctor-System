@@ -8,6 +8,7 @@ using OnlineDoctorSystem.Services.Data.Interfaces;
 using OnlineDoctorSystem.Services.Data;
 using OnlineDoctorSystem.Web.Hubs;
 using OnlineDoctorSystem.Services.Scraping;
+using Microsoft.AspNetCore.Mvc;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -38,6 +39,12 @@ builder.Services.AddApplicationServices(typeof(IReviewsService));
 builder.Services.AddApplicationServices(typeof(IEventsService));
 builder.Services.AddApplicationServices(typeof(IDoctorScraperService));
 builder.Services.AddHostedService<ConsultationsBackgroundService>();
+
+builder.Services.AddControllersWithViews()
+			   .AddMvcOptions(options =>
+			   {
+				   options.Filters.Add<AutoValidateAntiforgeryTokenAttribute>();
+			   });
 
 var app = builder.Build();
 
