@@ -12,17 +12,20 @@
 				<div class="card-body">
 					<h5 class="card-title">@Model.Name</h5>
 					<p class="card-text">@Model.SmallInfo</p>
-					<div>
-						@for (int i = 0; i < Math.Round(Model.AverageRating()); i++)
-						{
-							<i class="fas fa-star" style="color: gold;"></i>
-						}
-					</div>
-					<div class="d-flex align-items-center">
-						<a asp-controller="Doctor" asp-action="GetReviews" asp-route-id="@Model.Id" class="btn btn-outline-info mt-2 mr-3" data-scrollto="reviews" data-offset="60" rel="nofollow">
-							@Model.Reviews.Count отзива
-						</a>
-					</div>
+					@if (!Model.IsFromThirdParty)
+					{
+						<div>
+							@for (int i = 0; i < Math.Round(Model.AverageRating()); i++)
+							{
+								<i class="fas fa-star" style="color: gold;"></i>
+							}
+						</div>
+						<div class="d-flex align-items-center">
+							<a asp-controller="Doctor" asp-action="GetReviews" asp-route-id="@Model.Id" class="btn btn-outline-info mt-2 mr-3" data-scrollto="reviews" data-offset="60" rel="nofollow">
+								@Model.Reviews.Count отзива
+							</a>
+						</div>
+					}
 					<hr>
 					<p><strong>Specialty:</strong> @Model.Specialty</p>
 					<p><strong>Town:</strong> @Model.Town</p>
@@ -35,7 +38,15 @@
 					<hr>
 					<p><strong>Biography:</strong></p>
 					<p>@Model.Biography</p>
-					<a asp-controller="Consultation" asp-action="Add" asp-route-id="@Model.Id" class="btn btn-primary btn-lg">Запази час</a>
+					@if (Model.IsFromThirdParty)
+					{
+						<p class="text-danger">ВНИМАНИЕ! Този лекар е част от суперДок системата, ще бъдете пренасочени към неговият профил от долния бутон.</p>
+						<a href="@Model.LinkFromThirdParty" class="btn btn-success btn-outline-warning text-white">Запази час</a>
+					}
+					else
+					{
+						<a asp-controller="Consultation" asp-action="Add" asp-route-id="@Model.Id" class="btn btn-primary btn-lg">Запази час</a>
+					}
 				</div>
 			</div>
 		</div>

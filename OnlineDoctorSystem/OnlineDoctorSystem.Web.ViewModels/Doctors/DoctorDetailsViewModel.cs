@@ -15,6 +15,7 @@ namespace OnlineDoctorSystem.Web.ViewModels.Doctors
         public string Biography { get; set; } = null!;
         public ICollection<Review> Reviews { get; set; } = new HashSet<Review>();
         public bool IsFromThirdParty { get; set; }
+        public string? LinkFromThirdParty { get; set; } 
         public double AverageRating() => this.Reviews.Any() ? this.Reviews.Average(r => r.Rating) : 0;
     }
 }

@@ -107,6 +107,7 @@ namespace OnlineDoctorSystem.Services.Data
 				Biography = doctor.Biography,
 				Reviews = doctor.Reviews,
 				IsFromThirdParty = doctor.IsFromThirdParty,
+				LinkFromThirdParty = doctor.LinkFromThirdParty,
 			};
 		}
 
