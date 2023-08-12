@@ -5,7 +5,7 @@ using OnlineDoctorSystem.Services.Data.Interfaces;
 
 namespace OnlineDoctorSystem.Services.Data
 {
-    internal class PatientsService : IPatientsService
+    public class PatientsService : IPatientsService
     {
         private readonly OnlineDoctorDbContext context;
 
