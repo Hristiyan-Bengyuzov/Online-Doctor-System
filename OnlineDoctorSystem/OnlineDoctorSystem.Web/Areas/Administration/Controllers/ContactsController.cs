@@ -12,7 +12,7 @@ namespace OnlineDoctorSystem.Web.Areas.Administration.Controllers
 			this.submissionsService = submissionsService;
 		}
 
-		public new async Task<IActionResult> GetSubmissions()
+		public async Task<IActionResult> GetSubmissions()
 		{
 			var model = await submissionsService.GetContactSubmissionsAsync();
 			return View(model);

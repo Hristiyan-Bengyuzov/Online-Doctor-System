@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Ganss.Xss;
+using Microsoft.EntityFrameworkCore;
 using OnlineDoctorSystem.Data;
 using OnlineDoctorSystem.Data.Models;
 using OnlineDoctorSystem.Services.Data.Interfaces;
@@ -17,12 +18,14 @@ namespace OnlineDoctorSystem.Services.Data
 
 		public async Task AddAsync(AddContactSubmissionFormModel model)
 		{
+			var htmlSanitizer = new HtmlSanitizer();
+
 			var contactSubmission = new ContactSubmission
 			{
 				Name = model.Name!,
 				Email = model.Email!,
-				Title = model.Title,
-				Content = model.Content,
+				Title = htmlSanitizer.Sanitize(model.Title),
+				Content = htmlSanitizer.Sanitize(model.Content),
 			};
 
 			await this.context.ContactSubmissions.AddAsync(contactSubmission);

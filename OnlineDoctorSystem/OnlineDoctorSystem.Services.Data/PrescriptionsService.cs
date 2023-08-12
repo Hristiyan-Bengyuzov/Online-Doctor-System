@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Ganss.Xss;
+using Microsoft.EntityFrameworkCore;
 using OnlineDoctorSystem.Data;
 using OnlineDoctorSystem.Data.Models;
 using OnlineDoctorSystem.Services.Data.Interfaces;
@@ -17,14 +18,16 @@ namespace OnlineDoctorSystem.Services.Data
 
 		public async Task AddPrescriptionAsync(AddPrescriptionFormModel model)
 		{
+			var htmlSanitizer = new HtmlSanitizer();
+
 			var prescription = new Prescription
 			{
 				Doctor = model.Doctor!,
 				DoctorId = model.Doctor!.Id,
 				Patient = model.Patient!,
 				PatientId = Guid.Parse(model.PatientId!),
-				MedicamentName = model.MedicamentName,
-				Instructions = model.Instructions,
+				MedicamentName = htmlSanitizer.Sanitize(model.MedicamentName!),
+				Instructions = htmlSanitizer.Sanitize(model.Instructions!),
 			};
 
 			await this.context.Prescriptions.AddAsync(prescription);

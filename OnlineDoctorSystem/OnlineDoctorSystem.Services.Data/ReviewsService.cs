@@ -1,4 +1,5 @@
-﻿using OnlineDoctorSystem.Data;
+﻿using Ganss.Xss;
+using OnlineDoctorSystem.Data;
 using OnlineDoctorSystem.Data.Models;
 using OnlineDoctorSystem.Services.Data.Interfaces;
 using OnlineDoctorSystem.Web.ViewModels.Reviews;
@@ -18,12 +19,14 @@ namespace OnlineDoctorSystem.Services.Data
 
 		public async Task AddReviewAsync(AddReviewFormModel model)
 		{
+			var htmlSanitizer = new HtmlSanitizer();
+
 			var doctor = await this.doctorsService.GetDoctorByIdAsync(model.DoctorId);
 
 			var review = new Review
 			{
 				Rating = model.Rating,
-				Text = model.ReviewText
+				Text = htmlSanitizer.Sanitize(model.ReviewText)
 			};
 
 			doctor.Reviews.Add(review);
