@@ -39,6 +39,9 @@
 							<li class="nav-item">
 								<a class="nav-link text-dark" asp-area="" asp-controller="Contact" asp-action="Add">Контакти</a>
 							</li>
+							<li class="nav-item">
+								<a class="nav-link text-dark" asp-area="" asp-controller="Prescription" asp-action="GetPatientsPrescriptions">Моите предписания</a>
+							</li>
 						}
 						
 						@if (User.IsDoctor())

@@ -5,5 +5,6 @@ namespace OnlineDoctorSystem.Services.Data.Interfaces
 	public interface IPrescriptionsService
 	{
 		Task AddPrescriptionAsync(AddPrescriptionFormModel model);
+		IEnumerable<PrescriptionViewModel> GetPatientsPrescriptions(string id);
 	}
 }

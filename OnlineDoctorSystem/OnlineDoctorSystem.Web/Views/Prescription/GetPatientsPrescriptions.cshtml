@@ -1,0 +1,35 @@
+﻿@using OnlineDoctorSystem.Web.ViewModels.Prescriptions
+@model IEnumerable<PrescriptionViewModel>
+
+<div class="container">
+	@if (!Model.Any())
+	{
+		<div class="row mt-5">
+			<div class="col-md-12">
+				<h1 class="text-center">Няма никакви предписания към момента</h1>
+			</div>
+		</div>
+	}
+	else
+	{
+		<div class="row mt-5">
+			<div class="col-md-12">
+				<h1 class="text-center">Предписания:</h1>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				@foreach (var prescription in Model)
+				{
+					<div class="card mb-3">
+						<div class="card-body">
+							<h5 class="card-title">Доктор: @prescription.DoctorName</h5>
+							<p class="card-text">Лекарство: @prescription.MedicamentName</p>
+							<p class="card-text">Инструкции: @prescription.Instructions</p>
+						</div>
+					</div>
+				}
+			</div>
+		</div>
+	}
+</div>

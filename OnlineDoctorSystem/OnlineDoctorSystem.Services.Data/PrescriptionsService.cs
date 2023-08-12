@@ -1,4 +1,5 @@
-﻿using OnlineDoctorSystem.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using OnlineDoctorSystem.Data;
 using OnlineDoctorSystem.Data.Models;
 using OnlineDoctorSystem.Services.Data.Interfaces;
 using OnlineDoctorSystem.Web.ViewModels.Prescriptions;
@@ -28,6 +29,23 @@ namespace OnlineDoctorSystem.Services.Data
 
 			await this.context.Prescriptions.AddAsync(prescription);
 			await this.context.SaveChangesAsync();
+		}
+
+		public IEnumerable<PrescriptionViewModel> GetPatientsPrescriptions(string id)
+		{
+			var prescriptions = this.context.Patients
+				.Include(p => p.Prescriptions)
+				.ThenInclude(p => p.Doctor)
+				.First(d => d.Id == Guid.Parse(id))
+				.Prescriptions
+				.Select(p => new PrescriptionViewModel
+				{
+					DoctorName = p.Doctor.Name,
+					MedicamentName = p.MedicamentName,
+					Instructions = p.Instructions,
+				});
+
+			return prescriptions;
 		}
 	}
 }

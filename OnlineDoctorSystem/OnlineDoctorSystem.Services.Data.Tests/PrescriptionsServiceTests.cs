@@ -35,7 +35,7 @@ namespace OnlineDoctorSystem.Tests.Services
 		{
 			var doctor = new Doctor
 			{
-				Name = "Dr. John Doe",
+				Name = "Test Doctor",
 				Biography = "Experienced doctor",
 				Education = "Medical School",
 				Phone = "123-456-7890",
@@ -45,7 +45,7 @@ namespace OnlineDoctorSystem.Tests.Services
 
 			var patient = new Patient
 			{
-				Name = "Patient John Doe",
+				Name = "Test Patient",
 				PatientUserId = Guid.NewGuid().ToString(),
 				Phone = "123456789"
 			};
@@ -64,6 +64,56 @@ namespace OnlineDoctorSystem.Tests.Services
 
 			var prescriptionsCount = await context.Prescriptions.CountAsync();
 			Assert.AreEqual(1, prescriptionsCount);
+		}
+
+		[Test]
+		public void GetPatientsPrescriptions_ShouldReturnCorrectPrescriptions()
+		{
+			var doctor = new Doctor
+			{
+				Name = "Test Doctor",
+				Specialty = new Specialty { Name = "Test Specialty3" },
+				Town = new Town { Name = "Test Town3" },
+				Biography = "Biography",
+				Education = "Education",
+				Qualifications = "Qualifications",
+				Phone = "123456789",
+				SmallInfo = "Smallinfo",
+				IsConfirmed = true,
+				Latitude = 50,
+				Longitude = 30
+			};
+
+			var user = new ApplicationUser { UserName = Guid.NewGuid().ToString() };
+
+
+			var patient = new Patient
+			{
+				Name = "Test Patient",
+				PatientUserId = user.Id,
+				User = user,
+				Phone = "123456789"
+			};
+
+			var prescription = new Prescription
+			{
+				Doctor = doctor,
+				DoctorId = doctor.Id,
+				Patient = patient,
+				PatientId = patient.Id,
+				MedicamentName = "Medicine",
+				Instructions = "Take once daily",
+			};
+
+			context.Doctors.Add(doctor);
+			context.Patients.Add(patient);
+			context.Prescriptions.Add(prescription);
+			context.SaveChanges();
+
+			var result = prescriptionsService.GetPatientsPrescriptions(patient.Id.ToString());
+	
+			Assert.AreEqual(1, result.Count());
+			Assert.IsNotNull(result);
 		}
 	}
 }
