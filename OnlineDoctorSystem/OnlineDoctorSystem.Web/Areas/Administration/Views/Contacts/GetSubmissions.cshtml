@@ -1,0 +1,38 @@
+﻿@model IEnumerable<OnlineDoctorSystem.Web.ViewModels.Contacts.ContactSubmissionViewModel>
+@{
+	this.ViewData["Title"] = "Потребителски заявки";
+	Layout = "_Layout";
+	int counter = 0;
+}
+@if (Model.Any())
+{
+	<h1 class="text-center">@this.ViewData["Title"]</h1>
+
+
+	<table class="table table-striped table-hover justify-content-center text-center">
+		<tr>
+			<th>#</th>
+			<th>От</th>
+			<th>Имейл</th>
+			<th>Заглавие</th>
+			<th>Съобщение</th>
+		</tr>
+		@foreach (var submission in Model)
+		{
+			<tr>
+				<th>@(++counter)</th>
+				<th>@submission.Name</th>
+				<th>@submission.Email</th>
+				<th>@submission.Title</th>
+				<th>@submission.Content</th>
+			</tr>
+		}
+	</table>
+
+}
+else
+{
+	<h1 class="text-center">
+		Нямате съобщения от потребители
+	</h1>
+}

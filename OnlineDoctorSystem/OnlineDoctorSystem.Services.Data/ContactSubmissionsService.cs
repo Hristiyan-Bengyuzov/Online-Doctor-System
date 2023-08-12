@@ -1,4 +1,5 @@
-﻿using OnlineDoctorSystem.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using OnlineDoctorSystem.Data;
 using OnlineDoctorSystem.Data.Models;
 using OnlineDoctorSystem.Services.Data.Interfaces;
 using OnlineDoctorSystem.Web.ViewModels.Contacts;
@@ -26,6 +27,21 @@ namespace OnlineDoctorSystem.Services.Data
 
 			await this.context.ContactSubmissions.AddAsync(contactSubmission);
 			await this.context.SaveChangesAsync();
+		}
+
+		public async Task<IEnumerable<ContactSubmissionViewModel>> GetContactSubmissionsAsync()
+		{
+			var contactSubmissions = await this.context.ContactSubmissions
+				.Select(c => new ContactSubmissionViewModel
+				{
+					Name = c.Name,
+					Email = c.Email,
+					Title = c.Title,
+					Content = c.Content,
+				})
+				.ToListAsync();
+
+			return contactSubmissions;
 		}
 	}
 }

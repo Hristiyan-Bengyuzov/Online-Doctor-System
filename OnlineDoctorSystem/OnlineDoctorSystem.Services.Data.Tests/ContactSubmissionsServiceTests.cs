@@ -31,7 +31,7 @@ namespace OnlineDoctorSystem.Tests.Services.Data
 
 		[Test]
 		public async Task AddAsync_ShouldAddContactSubmission()
-		{ 
+		{
 			var model = new AddContactSubmissionFormModel
 			{
 				Name = "Ivan",
@@ -48,6 +48,24 @@ namespace OnlineDoctorSystem.Tests.Services.Data
 			Assert.AreEqual("ivan@abv.bg", addedSubmission.Email);
 			Assert.AreEqual("Test Title", addedSubmission.Title);
 			Assert.AreEqual("Test Content", addedSubmission.Content);
+		}
+
+		[Test]
+		public async Task GetContactSubmissionsAsync_ShouldReturnContactSubmissions()
+		{
+			var model = new AddContactSubmissionFormModel
+			{
+				Name = "Ivan",
+				Email = "ivan@abv.bg",
+				Title = "Test Title",
+				Content = "Test Content"
+			};
+
+			await contactSubmissionsService.AddAsync(model);
+
+			var submissions = await this.contactSubmissionsService.GetContactSubmissionsAsync();
+			Assert.IsNotNull(submissions);
+			Assert.AreEqual(1, submissions.Count());
 		}
 	}
 }

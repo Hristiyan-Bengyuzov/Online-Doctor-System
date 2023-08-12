@@ -5,5 +5,6 @@ namespace OnlineDoctorSystem.Services.Data.Interfaces
 	public interface IContactSubmissionsService
 	{
 		Task AddAsync(AddContactSubmissionFormModel model);
+		Task<IEnumerable<ContactSubmissionViewModel>> GetContactSubmissionsAsync();
 	}
 }
